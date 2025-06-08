@@ -1,0 +1,40 @@
+{
+  "name": "@guesung/funnel",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c",
+    "dev": "NODE_ENV=development rollup -c -w",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@guesung/jest-config": "workspace:*",
+    "@guesung/rollup-config": "workspace:*",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.12.11",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-fixed-jsdom": "^0.0.9",
+    "rollup": "^4.42.0",
+    "ts-jest": "^29.3.4",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1"
+  }
+}

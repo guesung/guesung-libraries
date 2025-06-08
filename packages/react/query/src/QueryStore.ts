@@ -1,4 +1,4 @@
-import { Listener, Observer } from "../Observer";
+import { Listener, Observer } from "./Observer";
 import { QueryKey, Status } from "./type";
 
 // Data
@@ -28,7 +28,8 @@ export const setQueryStatus = (key: QueryKey, status: Status) => {
   statusObservers[key].notify();
 };
 
-export const getQueryStatus = (key: QueryKey): Status => statusStore[key] ?? "idle";
+export const getQueryStatus = (key: QueryKey): Status =>
+  statusStore[key] ?? "idle";
 
 export const subscribeQueryStatus = (key: QueryKey, listener: Listener) => {
   if (!statusObservers[key]) statusObservers[key] = new Observer();
