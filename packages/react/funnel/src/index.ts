@@ -1,1 +1,2 @@
-export * from "./components";
+export { default as Funnel } from "./Funnel";
+export { useFunnelContext } from "./Funnel";

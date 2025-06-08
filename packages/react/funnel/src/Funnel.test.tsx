@@ -7,7 +7,7 @@ describe("Funnel", () => {
       <Funnel initialStep={2}>
         <Funnel.Step index={1}>Step1</Funnel.Step>
         <Funnel.Step index={2}>Step2</Funnel.Step>
-      </Funnel>,
+      </Funnel>
     );
     expect(screen.queryByText("Step1")).toBeNull();
     expect(screen.getByText("Step2")).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe("Funnel", () => {
           <GoNextStepButton />
         </Funnel.Step>
         <Funnel.Step index={2}>Step2</Funnel.Step>
-      </Funnel>,
+      </Funnel>
     );
 
     fireEvent.click(getByRole("button", { name: "Go Next Step" }));
@@ -34,7 +34,7 @@ describe("Funnel", () => {
         <Funnel.Step index={2}>
           <GoPrevStepButton />
         </Funnel.Step>
-      </Funnel>,
+      </Funnel>
     );
 
     fireEvent.click(getByRole("button", { name: "Go Prev Step" }));
