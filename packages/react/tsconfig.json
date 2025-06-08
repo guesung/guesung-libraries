@@ -17,5 +17,5 @@
     "emitDeclarationOnly": true,
     "traceResolution": true
   },
-  "include": ["src/**/*", "**/*.tsx"]
+  "include": ["src/**/*"]
 }
