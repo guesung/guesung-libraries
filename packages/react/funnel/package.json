@@ -1,5 +1,5 @@
 {
-  "name": "@guesung/react",
+  "name": "@guesung/funnel",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.cjs",
@@ -11,9 +11,9 @@
       "require": "./dist/index.cjs"
     }
   },
-  "type": "module",
   "scripts": {
-    "build": "rollup -c",
+    "build": "NODE_ENV=production rollup -c",
+    "dev": "NODE_ENV=development rollup -c -w",
     "test": "jest"
   },
   "dependencies": {
@@ -21,6 +21,8 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@guesung/jest-config": "workspace:*",
+    "@guesung/rollup-config": "workspace:*",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
