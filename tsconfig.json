@@ -7,15 +7,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "declaration": true,
-    "declarationDir": "types",
+    "rootDir": ".",
     "sourceMap": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true,
     "traceResolution": true
-  },
-  "include": ["src/**/*"]
+  }
 }

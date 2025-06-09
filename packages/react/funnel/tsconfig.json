@@ -1,8 +1,11 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "types": ["@testing-library/jest-dom"]
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationDir": "dist",
+    "types": ["@testing-library/jest-dom"],
+    "sourceMap": true
   },
   "include": ["src/**/*"]
 }
