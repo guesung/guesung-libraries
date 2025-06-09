@@ -1,5 +1,5 @@
 {
-  "name": "@guesung/funnel",
+  "name": "@guesung/query",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.cjs",
@@ -16,10 +16,7 @@
     "dev": "NODE_ENV=development rollup -c -w",
     "test": "jest"
   },
-  "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@guesung/jest-config": "workspace:*",
     "@guesung/rollup-config": "workspace:*",
@@ -36,5 +33,9 @@
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
     "tslib": "^2.8.1"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
