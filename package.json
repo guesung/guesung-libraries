@@ -1,5 +1,11 @@
 {
-	"devDependencies": {
-		"typescript": "^5.8.3"
-	}
+  "scripts": {
+    "dev": "lerna run dev",
+    "build": "lerna run build"
+  },
+  "devDependencies": {
+    "lerna": "^8.2.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {}
 }
