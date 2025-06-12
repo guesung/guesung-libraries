@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "lerna run dev",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "type-check": "lerna run type-check"
   },
   "devDependencies": {
     "lerna": "^8.2.2",
