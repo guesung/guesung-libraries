@@ -1,5 +1,5 @@
-import { Listener, Observer } from "./Observer";
-import { QueryKey, Status } from "./type";
+import { type Listener, Observer } from "./Observer";
+import type { QueryKey, Status } from "./type";
 
 // Data
 const dataStore: Record<QueryKey, unknown> = {};
@@ -15,7 +15,7 @@ export const getQueryData = (key: QueryKey) => dataStore[key];
 export const subscribeQueryData = (key: QueryKey, listener: Listener) => {
   if (!dataObservers[key]) dataObservers[key] = new Observer();
   dataObservers[key].add(listener);
-  return () => dataObservers[key].remove(listener);
+  return () => dataObservers[key]!.remove(listener);
 };
 
 // Status
@@ -25,7 +25,7 @@ const statusObservers: Record<QueryKey, Observer> = {};
 
 export const setQueryStatus = (key: QueryKey, status: Status) => {
   statusStore[key] = status;
-  statusObservers[key].notify();
+  statusObservers[key]?.notify();
 };
 
 export const getQueryStatus = (key: QueryKey): Status =>
@@ -34,5 +34,5 @@ export const getQueryStatus = (key: QueryKey): Status =>
 export const subscribeQueryStatus = (key: QueryKey, listener: Listener) => {
   if (!statusObservers[key]) statusObservers[key] = new Observer();
   statusObservers[key].add(listener);
-  return () => statusObservers[key].remove(listener);
+  return () => statusObservers[key]!.remove(listener);
 };

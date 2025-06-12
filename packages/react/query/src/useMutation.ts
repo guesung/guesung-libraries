@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Status } from "./type";
+import type { Status } from "./type";
 
 interface UseMutationProps<TRequest, TResponse> extends MutateOptions {
   mutationFn: (variables: TRequest) => Promise<TResponse>;

@@ -1,8 +1,12 @@
 import { useEffect } from "react";
-import { clearQueryPromise, getQueryPromise, setQueryPromise } from "./QueryPromises";
+import {
+  clearQueryPromise,
+  getQueryPromise,
+  setQueryPromise,
+} from "./QueryPromises";
 import { getQueryData, setQueryData, setQueryStatus } from "./QueryStore";
 import { useQueryData, useQueryStatus } from "./useQueryData";
-import { Status } from "./type";
+import type { Status } from "./type";
 
 interface UseQueryProps<T> {
   queryKey: string;
@@ -18,13 +22,21 @@ interface UseQueryCommonResult {
   refetch: () => void;
 }
 
-export default function useQuery<T>(props: UseQueryProps<T> & { initialData: Partial<T> }): UseQueryCommonResult & {
+export default function useQuery<T>(
+  props: UseQueryProps<T> & { initialData: Partial<T> }
+): UseQueryCommonResult & {
   data: T;
 };
-export default function useQuery<T>(props: UseQueryProps<T> & { initialData?: undefined }): UseQueryCommonResult & {
+export default function useQuery<T>(
+  props: UseQueryProps<T> & { initialData?: undefined }
+): UseQueryCommonResult & {
   data: T | undefined;
 };
-export default function useQuery<T>({ queryKey, queryFn, initialData }: UseQueryProps<T>) {
+export default function useQuery<T>({
+  queryKey,
+  queryFn,
+  initialData,
+}: UseQueryProps<T>) {
   const data = useQueryData<T | undefined>(queryKey);
   const status = useQueryStatus(queryKey);
 
