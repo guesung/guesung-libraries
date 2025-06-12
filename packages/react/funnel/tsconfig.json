@@ -1,12 +1,12 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "declaration": true,
-    "declarationDir": "dist",
+    "jsx": "react-jsx",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "outDir": "dist",
+    "rootDir": "src",
     "types": ["@testing-library/jest-dom"],
-    "sourceMap": true,
-    "declarationMap": true
+    "declarationDir": "dist"
   },
   "include": ["src/**/*"]
 }
