@@ -1,14 +1,16 @@
-import { Observer } from '@/modules';
-import { errorMessage } from '@/modules';
-import { Store } from '@/store';
-import { HTMLType, StrictObject } from '@/types';
-import { $, html } from '@/utils';
-import { forEach } from '@fxts/core';
+import { Observer } from "@/modules";
+import type { HTMLType, StrictObject } from "@/types";
+import { $, html } from "@/utils";
+import { forEach } from "@fxts/core";
 
 export type Props = StrictObject | null;
 export type State = StrictObject | null;
 
-export default abstract class Component<TProps extends Props = {}, TState extends State = {}> implements Observer<any> {
+export default abstract class Component<
+  TProps extends Props = {},
+  TState extends State = {}
+> implements Observer<any>
+{
   state = {} as TState;
 
   #props: TProps;
@@ -22,7 +24,7 @@ export default abstract class Component<TProps extends Props = {}, TState extend
     this.addEventListener();
   }
 
-  subsribe(stores: Store<any>[]) {
+  subsribe(stores: any[]) {
     forEach((store) => {
       store.subscribe(this.update.bind(this));
     }, stores);
@@ -35,7 +37,7 @@ export default abstract class Component<TProps extends Props = {}, TState extend
   setup() {}
 
   render() {
-    const element = document.createElement('div');
+    const element = document.createElement("div");
     element.innerHTML = this.template();
 
     const elementFirstChild = element.firstElementChild as HTMLElement;
@@ -59,7 +61,7 @@ export default abstract class Component<TProps extends Props = {}, TState extend
 
   fillSlot(component: Component, slotName: string) {
     const targetSlot = $(`slot[name=${slotName}]`, this.element);
-    if (!targetSlot) throw new Error(errorMessage.get('slot', slotName));
+    if (!targetSlot) throw new Error(`slot not found: ${slotName}`);
 
     targetSlot.replaceWith(component.element);
   }
