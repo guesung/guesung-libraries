@@ -7,8 +7,8 @@ export type Props = StrictObject | null;
 export type State = StrictObject | null;
 
 export default abstract class Component<
-  TProps extends Props = {},
-  TState extends State = {}
+  TProps extends Props = Record<string, unknown>,
+  TState extends State = Record<string, unknown>
 > implements Observer<any>
 {
   state = {} as TState;
