@@ -1,3 +1,2 @@
-export * from './common';
-export * from './dom';
-export * from './dto';
+export * from "./common";
+export * from "./dom";
