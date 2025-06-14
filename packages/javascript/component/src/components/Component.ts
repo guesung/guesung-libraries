@@ -24,7 +24,7 @@ export default abstract class Component<
     this.addEventListener();
   }
 
-  subsribe(stores: any[]) {
+  subscribe(stores: any[]) {
     forEach((store) => {
       store.subscribe(this.update.bind(this));
     }, stores);
