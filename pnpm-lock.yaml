@@ -50,6 +50,18 @@ importers:
         specifier: ^2.2.4
         version: 2.2.4(rollup@4.42.0)
 
+  examples/javascript/component:
+    devDependencies:
+      '@guesung/component':
+        specifier: workspace:*
+        version: link:../../../packages/javascript/component
+      typescript:
+        specifier: ^5.2.2
+        version: 5.8.3
+      vite:
+        specifier: ^5.0.8
+        version: 5.4.19(@types/node@20.19.0)(terser@5.41.0)
+
   examples/react/funnel:
     dependencies:
       '@guesung/funnel':
