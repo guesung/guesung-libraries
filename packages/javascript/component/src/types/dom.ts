@@ -1,1 +1,1 @@
-export type HTMLType = 'HTMLType';
+export type HTMLType = string & { readonly __htmlBrand: unique symbol };
