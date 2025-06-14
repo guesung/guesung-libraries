@@ -30,7 +30,7 @@ export const $ = <
   return target!;
 };
 
-export const escape = (value: unknown) => {
+export const escapeHTML = (value: unknown) => {
   if (Array.isArray(value) && value.every((it) => it instanceof Component)) {
     return value.map((it) => it.template()).join("");
   }
@@ -48,7 +48,7 @@ export function html(
         map(
           (str) =>
             Array.isArray(str) ? reduce((a, b) => `${a}${b}`, str) : str,
-          map(escape, values)
+          map(escapeHTML, values)
         ),
         [""]
       )
