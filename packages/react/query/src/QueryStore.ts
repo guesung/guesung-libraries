@@ -7,23 +7,23 @@ const dataObservers: Record<QueryKey, Observer> = {};
 
 // 테스트용: 모든 캐시 초기화
 export function __clearAll() {
-  Object.keys(dataStore).forEach((k) => delete dataStore[k]);
-  Object.keys(dataObservers).forEach((k) => delete dataObservers[k]);
-  Object.keys(statusStore).forEach((k) => delete statusStore[k]);
-  Object.keys(statusObservers).forEach((k) => delete statusObservers[k]);
+	Object.keys(dataStore).forEach((k) => delete dataStore[k]);
+	Object.keys(dataObservers).forEach((k) => delete dataObservers[k]);
+	Object.keys(statusStore).forEach((k) => delete statusStore[k]);
+	Object.keys(statusObservers).forEach((k) => delete statusObservers[k]);
 }
 
 export const setQueryData = (key: QueryKey, value: unknown) => {
-  dataStore[key] = value;
-  dataObservers[key]?.notify();
+	dataStore[key] = value;
+	dataObservers[key]?.notify();
 };
 
 export const getQueryData = (key: QueryKey) => dataStore[key];
 
 export const subscribeQueryData = (key: QueryKey, listener: Listener) => {
-  if (!dataObservers[key]) dataObservers[key] = new Observer();
-  dataObservers[key].add(listener);
-  return () => dataObservers[key]!.remove(listener);
+	if (!dataObservers[key]) dataObservers[key] = new Observer();
+	dataObservers[key].add(listener);
+	return () => dataObservers[key]!.remove(listener);
 };
 
 // Status
@@ -32,15 +32,15 @@ const statusStore: Record<QueryKey, Status> = {};
 const statusObservers: Record<QueryKey, Observer> = {};
 
 export const setQueryStatus = (key: QueryKey, status: Status) => {
-  statusStore[key] = status;
-  statusObservers[key]?.notify();
+	statusStore[key] = status;
+	statusObservers[key]?.notify();
 };
 
 export const getQueryStatus = (key: QueryKey): Status =>
-  statusStore[key] ?? "idle";
+	statusStore[key] ?? "idle";
 
 export const subscribeQueryStatus = (key: QueryKey, listener: Listener) => {
-  if (!statusObservers[key]) statusObservers[key] = new Observer();
-  statusObservers[key].add(listener);
-  return () => statusObservers[key]!.remove(listener);
+	if (!statusObservers[key]) statusObservers[key] = new Observer();
+	statusObservers[key].add(listener);
+	return () => statusObservers[key]!.remove(listener);
 };

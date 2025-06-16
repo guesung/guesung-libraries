@@ -4,9 +4,9 @@ import App from "./App.tsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Suspense>
-      <App />
-    </Suspense>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Suspense fallback={<div>로딩 중</div>}>
+			<App />
+		</Suspense>
+	</React.StrictMode>,
 );

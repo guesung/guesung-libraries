@@ -1,37 +1,43 @@
 import "./App.css";
 
-import { useQuery } from "@guesung/query";
+import { setQueryData, useQuery } from "@guesung/query";
 
 interface Response {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
+	userId: number;
+	id: number;
+	title: string;
+	body: string;
 }
 
 const fetchJsonData = async (): Promise<Response> => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-  return response.json();
+	const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+	return response.json();
 };
 
 function App() {
-  const { data } = useQuery({
-    queryKey: "test",
-    queryFn: fetchJsonData,
-    initialData: {
-      userId: 0,
-      id: 0,
-      title: "",
-      body: "",
-    },
-  });
+	const { data, refetch } = useQuery({
+		queryKey: "test",
+		queryFn: fetchJsonData,
+		isSuspense: true,
+	});
 
-  return (
-    <div>
-      <h4>제목 : {data?.title}</h4>
-      <p>{data?.body}</p>
-    </div>
-  );
+	return (
+		<div>
+			<h4>제목 : {data?.title}</h4>
+			<p>{data?.body}</p>
+			<button onClick={() => refetch()}>refetch</button>
+			<button
+				onClick={() =>
+					setQueryData("test", {
+						title: "test",
+						body: "test",
+					})
+				}
+			>
+				setQueryData
+			</button>
+		</div>
+	);
 }
 
 export default App;
