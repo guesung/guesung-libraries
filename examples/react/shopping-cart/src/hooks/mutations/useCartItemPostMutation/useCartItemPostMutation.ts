@@ -1,5 +1,5 @@
 import { CartItemApi, type PostCartItemsParams } from "@/apis";
-import { useMutation } from "@/modules/Query";
+import { useMutation } from "@guesung/query";
 
 export default function useCartItemPostMutation() {
 	return useMutation<PostCartItemsParams, void>({

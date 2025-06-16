@@ -1,5 +1,5 @@
 import { QUERY_KEY } from "@/constants";
-import { getQueryData, setQueryData } from "@/modules/Query/QueryStore";
+import { getQueryData, setQueryData } from "@guesung/query";
 import type { GetCartItemsResponse } from "@/types";
 
 export function optimisticIncreaseCartItem(productId: number) {

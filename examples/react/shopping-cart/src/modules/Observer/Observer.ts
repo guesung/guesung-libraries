@@ -12,6 +12,6 @@ export default class Observer {
 	}
 
 	notify() {
-		this.#listeners.forEach((listener) => listener());
+		for (const listener of this.#listeners) listener();
 	}
 }

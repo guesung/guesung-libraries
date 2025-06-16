@@ -1,5 +1,5 @@
 import { CartItemApi, type DeleteCartItemsParams } from "@/apis";
-import { useMutation } from "@/modules/Query";
+import { useMutation } from "@guesung/query";
 
 export default function useCartItemDeleteMutation() {
 	return useMutation<DeleteCartItemsParams, void>({

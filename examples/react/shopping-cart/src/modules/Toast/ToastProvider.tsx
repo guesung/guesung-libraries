@@ -22,7 +22,7 @@ interface ToastContextType {
 	hideToast: (id: number) => void;
 }
 
-type ToastProviderProps = {}
+type ToastProviderProps = {};
 
 export const ToastContext = createContext<ToastContextType | null>(null);
 
@@ -56,7 +56,7 @@ export const useToast = () => {
 
 	if (value === null)
 		throw new Error(
-			`ToastContext value must be used within a ToastProvider Component!!`,
+			"ToastContext value must be used within a ToastProvider Component!!",
 		);
 
 	return value;
