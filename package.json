@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "lerna run dev",
     "build": "lerna run build",
+    "test": "lerna run test",
     "build:package": "lerna run build --scope=@guesung/*",
     "build:example": "lerna run build --scope=@guesung/example-*",
     "type-check": "lerna run type-check"
