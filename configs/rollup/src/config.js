@@ -3,6 +3,7 @@ const commonjs = require("@rollup/plugin-commonjs");
 const typescript = require("@rollup/plugin-typescript");
 const terser = require("@rollup/plugin-terser");
 const babel = require("@rollup/plugin-babel");
+const peerDepsExternal = require("rollup-plugin-peer-deps-external");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -21,6 +22,7 @@ const defaultSettings = ({ packageJson }) => ({
 		},
 	],
 	plugins: [
+		peerDepsExternal(),
 		resolve(),
 		commonjs(),
 		typescript({ tsconfig: "./tsconfig.json" }),
