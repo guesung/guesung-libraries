@@ -3,10 +3,13 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Suspense>
-      <App />
-    </Suspense>
-  </React.StrictMode>
+const container = document.getElementById("root");
+if (!container) throw new Error("#root element not found");
+
+ReactDOM.createRoot(container).render(
+	<React.StrictMode>
+		<Suspense fallback={<div>로딩 중</div>}>
+			<App />
+		</Suspense>
+	</React.StrictMode>,
 );

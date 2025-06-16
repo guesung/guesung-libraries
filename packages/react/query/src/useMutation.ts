@@ -2,45 +2,45 @@ import { useState } from "react";
 import type { Status } from "./type";
 
 interface UseMutationProps<TRequest, TResponse> extends MutateOptions {
-  mutationFn: (variables: TRequest) => Promise<TResponse>;
+	mutationFn: (variables: TRequest) => Promise<TResponse>;
 }
 
 interface MutateOptions {
-  onMutate?: () => void;
-  onSuccess?: () => void;
-  onSettled?: () => void;
-  onError?: (error: unknown) => void;
+	onMutate?: () => void;
+	onSuccess?: () => void;
+	onSettled?: () => void;
+	onError?: (error: unknown) => void;
 }
 
 export default function useMutation<TRequest, TResponse>({
-  mutationFn,
-  ...props
+	mutationFn,
+	...props
 }: UseMutationProps<TRequest, TResponse>) {
-  const [status, setStatus] = useState<Status>("idle");
+	const [status, setStatus] = useState<Status>("idle");
 
-  const mutate = async (variables: TRequest, options?: MutateOptions) => {
-    try {
-      setStatus("loading");
+	const mutate = async (variables: TRequest, options?: MutateOptions) => {
+		try {
+			setStatus("pending");
 
-      props?.onMutate?.();
-      options?.onMutate?.();
+			props?.onMutate?.();
+			options?.onMutate?.();
 
-      await mutationFn(variables);
+			await mutationFn(variables);
 
-      props?.onSuccess?.();
-      options?.onSuccess?.();
+			props?.onSuccess?.();
+			options?.onSuccess?.();
 
-      setStatus("success");
-    } catch (error) {
-      setStatus("error");
-      props?.onError?.(error);
-      options?.onError?.(error);
-      throw error;
-    } finally {
-      props?.onSettled?.();
-      options?.onSettled?.();
-    }
-  };
+			setStatus("success");
+		} catch (error) {
+			setStatus("error");
+			props?.onError?.(error);
+			options?.onError?.(error);
+			throw error;
+		} finally {
+			props?.onSettled?.();
+			options?.onSettled?.();
+		}
+	};
 
-  return { mutate, status };
+	return { mutate, status };
 }
