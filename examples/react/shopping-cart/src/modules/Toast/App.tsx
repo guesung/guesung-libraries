@@ -12,5 +12,9 @@ export default function App() {
 		});
 		setCounter((counter) => counter + 1);
 	};
-	return <button onClick={handleClick}>버튼</button>;
+	return (
+		<button type="button" onClick={handleClick}>
+			버튼
+		</button>
+	);
 }

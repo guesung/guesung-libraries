@@ -21,14 +21,10 @@ interface ShoppingCartContextType {
 	setIsFar: Dispatch<SetStateAction<IsFar>>;
 }
 
-type ShoppingCartProviderProps = {}
-
 export const ShoppingCartContext =
 	createContext<ShoppingCartContextType | null>(null);
 
-export default function ShoppingCartProvider({
-	children,
-}: PropsWithChildren<ShoppingCartProviderProps>) {
+export default function ShoppingCartProvider({ children }: PropsWithChildren) {
 	const [selectedItemIds, setSelectedItemIds] =
 		usePersistState<SelectedItemIds>("selectedItemIds", []);
 	const [selectedCouponIds, setSelectedCouponIds] = useState<SelectedCouponIds>(
@@ -57,7 +53,7 @@ export const useShoppingCartContext = () => {
 
 	if (value === null)
 		throw new Error(
-			`ShoppingCartContext value must be used within a ShoppingCartProvider Component!!`,
+			"ShoppingCartContext value must be used within a ShoppingCartProvider Component!!",
 		);
 
 	return value;

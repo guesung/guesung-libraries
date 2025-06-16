@@ -6,4 +6,4 @@ type Month = `0${ZeroToNine}` | `1${1 | 2}`;
 
 type Day = `0${ZeroToNine}` | `1${ZeroToNine}` | `2${ZeroToNine}` | `3${0 | 1}`;
 
-export type Date = `${Year}-${Month}-${Day}`;
+export type DateType = `${Year}-${Month}-${Day}`;

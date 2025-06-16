@@ -22,13 +22,9 @@ interface ToastContextType {
 	hideToast: (id: number) => void;
 }
 
-type ToastProviderProps = {};
-
 export const ToastContext = createContext<ToastContextType | null>(null);
 
-export default function ToastProvider({
-	children,
-}: PropsWithChildren<ToastProviderProps>) {
+export default function ToastProvider({ children }: PropsWithChildren) {
 	const [toasts, setToasts] = useState<ToastType[]>([]);
 
 	const showToast = useCallback((toast: Omit<ToastType, "id">) => {

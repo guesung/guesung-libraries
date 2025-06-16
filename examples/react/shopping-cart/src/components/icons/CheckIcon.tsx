@@ -10,6 +10,7 @@ export default function Uncheck({ ...props }: SVGProps<SVGSVGElement>) {
 			xmlns="http://www.w3.org/2000/svg"
 			{...props}
 		>
+			<title>Check</title>
 			<g clipPath="url(#clip0_20_94)">
 				<path
 					d="M9.11573 16.17L4.94573 12L3.52573 13.41L9.11573 19L21.1157 7L19.7057 5.59L9.11573 16.17Z"
