@@ -70,7 +70,9 @@ export default function useQuery<T>({
 
   useEffect(() => {
     fetchData();
+  }, []);
 
+  useEffect(() => {
     const interval = setInterval(fetchData, AUTO_REFETCH_INTERVAL);
     return () => clearInterval(interval);
   }, []);
