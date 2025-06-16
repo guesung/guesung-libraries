@@ -20,7 +20,7 @@ export default function useMutation<TRequest, TResponse>({
 
   const mutate = async (variables: TRequest, options?: MutateOptions) => {
     try {
-      setStatus("loading");
+      setStatus("pending");
 
       props?.onMutate?.();
       options?.onMutate?.();
