@@ -18,7 +18,6 @@ const AUTO_REFETCH_INTERVAL = 5 * 60 * 1000; // 5분
 
 interface UseQueryCommonResult {
   status: Status;
-  fetchData: () => void;
   refetch: () => void;
 }
 
@@ -41,7 +40,7 @@ export default function useQuery<T>({
   const status = useQueryStatus(queryKey);
 
   const fetchData = async (forceFetch = false) => {
-    setQueryStatus(queryKey, "loading");
+    setQueryStatus(queryKey, "pending");
     try {
       if (data && !forceFetch) {
         setQueryStatus(queryKey, "success");
@@ -74,11 +73,10 @@ export default function useQuery<T>({
   const refetch = () => fetchData(true);
 
   if (status === "error") throw getQueryData(queryKey);
-  if (status === "loading") throw getQueryPromise(queryKey);
+  if (!data && status === "pending") throw getQueryPromise(queryKey);
   return {
     data: data ?? initialData,
     status,
-    fetchData,
     refetch,
   };
 }
