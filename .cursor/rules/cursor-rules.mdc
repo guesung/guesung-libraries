@@ -1,0 +1,97 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules for guesung-libraries
+
+## 1. 프로젝트 목표
+- 직접 만든 유용한 JavaScript/React 기반 패키지들을 한 곳에 모아 관리합니다.
+- 빌드 툴(rollup, esbuild)과 모노레포(monorepo) 관리 등 실전적인 프론트엔드 개발 및 배포 경험을 쌓는 것이 주요 학습 목표입니다.
+
+## 2. 프로젝트 구조
+
+```
+guesung-libraries/
+├── packages/
+│   ├── javascript/
+│   │   └── component/
+│   │       ├── src/
+│   │       ├── package.json
+│   │       └── ...
+│   └── react/
+│       ├── query/
+│       │   ├── src/
+│       │   ├── package.json
+│       │   └── ...
+│       └── funnel/
+│           ├── src/
+│           ├── package.json
+│           └── ...
+├── docs/
+├── .github/
+├── package.json
+├── pnpm-workspace.yaml
+└── README.md
+```
+
+- **packages/**: 각 독립적인 라이브러리(패키지) 소스가 위치합니다.
+  - **javascript/component/**: 범용 JS 컴포넌트(React 비의존) 패키지.
+  - **react/query/**: React 환경에서 서버 데이터 fetch, 캐싱, 상태 관리, mutation 등을 지원하는 커스텀 훅 집합.  
+    - React Query의 핵심 패턴을 간단하게 구현.  
+    - 주요 훅: `useQuery`, `useMutation`, `useQueryData`, `useQueryStatus` 등.
+  - **react/funnel/**: (설명 미작성) React 기반의 특정 기능 또는 UI 흐름(Funnel) 관련 패키지로 추정.
+- **docs/**: 공통 가이드, 기술 문서, 예제 등을 관리합니다.
+- **.github/**: PR 템플릿, 워크플로우 등 협업 관련 설정 파일.
+- **pnpm-workspace.yaml**: 모노레포 패키지 관리 도구 설정 파일.
+
+## 3. 각 패키지(프로젝트) 특징 및 설명
+
+- **javascript**
+  - 목적: 범용 JavaScript(React 비의존) 컴포넌트 및 유틸리티 제공
+  - 특징: 프레임워크에 종속적이지 않은 재사용 가능한 컴포넌트/함수 집합
+
+- **react**
+  - 목적: 범용 React 컴포넌트, 훅 제공
+
+- **react/query**
+  - 목적: React 환경에서 서버 데이터의 비동기 fetch, 캐싱, 상태 관리, mutation(쓰기/갱신) 등을 간편하게 처리할 수 있도록 지원
+  - 특징: React Query의 핵심 패턴을 간단하게 구현, 데이터 요청/갱신/에러/로딩 상태를 일관되게 관리
+  - 주요 훅: `useQuery`, `useMutation`, `useQueryData`, `useQueryStatus` 등
+
+- **react/funnel**
+  - 목적: React 기반의 특정 UI 흐름(Funnel) 또는 단계별 프로세스 구현을 위한 패키지
+
+## 4. 코드 스타일
+- 코드 스타일, 네이밍, 컴포넌트 설계, 폴더 구조 등은 반드시 **@toss-frontend-rules.mdc**의 원칙을 따릅니다.
+  - 예: 마법 숫자 상수화, 복잡한 로직 분리, feature/domain 기반 구조, 일관된 네이밍 등
+- 새로운 규칙이 필요할 경우, toss-frontend-rules의 패턴을 참고하여 일관성을 유지합니다.
+
+## 5. 문서화 규칙
+- 모든 문서 작성 시 **@technical-writing.mdc**의 원칙을 반드시 준수합니다.
+  - 한 페이지, 한 목표 원칙
+  - 문서 시작부에 명확한 개요("이 문서에서 무엇을 얻을 수 있는가?") 포함
+  - 예측 가능한 목차/제목 구조, 일관된 용어 사용
+  - 코드 예제는 실제 동작 가능한 형태로 제공
+- 문서의 목적, 대상 독자, 기대 효과를 명확히 기술합니다.
+- 문서 내 예제, 설명, FAQ, 참고 링크 등은 필요에 따라 적절히 배치합니다.
+- 문서화는 코드와 동일한 수준으로 중요하게 다루며, 변경 시 반드시 최신 상태를 유지합니다.
+
+## 6. 테스트
+- 각 패키지/모듈의 주요 기능에는 **테스트 코드 작성이 필수**입니다.
+  - 테스트는 해당 파일과 동일한 폴더에 `.test.ts(x)` 파일로 작성합니다.
+  - 테스트 설명은 "무엇을 검증하는지" 명확하게 작성합니다.
+  - edge case, 실패 케이스, 통합 시나리오 등 다양한 상황을 포괄합니다.
+- 테스트 프레임워크(예: Jest, Vitest 등)는 패키지별로 명확히 지정하고, README에 사용법을 안내합니다.
+- CI 환경에서 모든 테스트가 자동으로 실행되도록 설정합니다.
+
+## 7. 협업 및 관리
+- **커밋 메시지**는 `[타입] 요약(한글)` 형식으로 작성합니다.  
+  예: `feat: rollup 빌드 설정 추가`
+- **PR(풀리퀘스트)**에는 변경 요약, 테스트 방법, 리뷰 요청, 관련 이슈(있다면) 등을 반드시 포함합니다.
+- 코드리뷰 시에는 다음을 중점적으로 확인합니다:
+  - toss-frontend-rules 및 technical-writing.mdc 준수 여부
+  - 코드/문서의 가독성, 일관성, 재사용성, 유지보수성
+  - 불필요한 중복, 과도한 추상화, 결합도 등
+- 모노레포 구조에서는 각 패키지의 독립성과 전체적인 일관성을 모두 고려합니다.
+- 신규 패키지/모듈 추가 시, 목적·사용법·예제·테스트·문서화가 모두 포함되어야 합니다.
