@@ -26,6 +26,7 @@ alwaysApply: false
 - **ErrorBoundary, Suspense** 등 React의 고급 기능도 실제 동작과 동일하게 테스트한다.
 - **mock 함수**는 각 테스트마다 명확히 선언하고, 기대값을 명확히 지정한다.
 - **전역 상태/캐시**는 beforeEach/afterEach에서 항상 초기화한다.
+- describe를 활용해서 각 테스트 케이스를 그루핑한다.
 
 ## 4. 테스트 커버리지
 
