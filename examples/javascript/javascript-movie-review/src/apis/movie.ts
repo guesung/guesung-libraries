@@ -1,42 +1,45 @@
-import { MovieApiClient } from '@/apis';
-import { moviesStore, serverStore } from '@/store';
+import { MovieApiClient } from "@/apis";
+import { moviesStore, serverStore } from "@/store";
 
 interface GetMoviesProps {
-  page: number;
-  query: string;
+	page: number;
+	query: string;
 }
 
 export const getMovies = async ({ query, page }: GetMoviesProps) => {
-  try {
-    const moviesResponse = await serverStore.query({
-      queryFn: () =>
-        MovieApiClient.get({
-          page,
-          query,
-        }),
-      queryKey: [query, page],
-    });
+	try {
+		const moviesResponse = await serverStore.query({
+			queryFn: () =>
+				MovieApiClient.get({
+					page,
+					query,
+				}),
+			queryKey: [query, page],
+		});
 
-    const movies = moviesStore.getState();
-    moviesStore.setState([...(movies ? movies : []), ...moviesResponse.results]);
-  } catch (e) {
-    console.log(e);
-  }
+		const movies = moviesStore.getState();
+		moviesStore.setState([
+			...(movies ? movies : []),
+			...moviesResponse.results,
+		]);
+	} catch (e) {
+		console.log(e);
+	}
 };
 
 interface GetAllMoviesProps {
-  page: number;
+	page: number;
 }
 
 export const getAllMovies = async ({ page }: GetAllMoviesProps) => {
-  const moviesResponse = await serverStore.query({
-    queryFn: () =>
-      MovieApiClient.getAll({
-        page,
-      }),
-    queryKey: [page],
-  });
+	const moviesResponse = await serverStore.query({
+		queryFn: () =>
+			MovieApiClient.getAll({
+				page,
+			}),
+		queryKey: [page],
+	});
 
-  const movies = moviesStore.getState();
-  moviesStore.setState([...(movies ? movies : []), ...moviesResponse.results]);
+	const movies = moviesStore.getState();
+	moviesStore.setState([...(movies ? movies : []), ...moviesResponse.results]);
 };

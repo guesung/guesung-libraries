@@ -1,21 +1,21 @@
-import { MovieApiClient } from '@/apis';
-import { errorMessage, eventHandlerInstance } from '@/modules';
-import { movieDetailResponseStore, moviesStore, serverStore } from '@/store';
-import { html } from '@/utils';
-import { forEach } from '@fxts/core';
-import { MOVIE_ITEM_PER_PAGE } from '@/constants';
-import Component from './core/Component';
-import Movie from './Movie';
+import { MovieApiClient } from "@/apis";
+import { errorMessage, eventHandlerInstance } from "@/modules";
+import { movieDetailResponseStore, moviesStore, serverStore } from "@/store";
+import { html } from "@/utils";
+import { forEach } from "@fxts/core";
+import { MOVIE_ITEM_PER_PAGE } from "@/constants";
+import Component from "./core/Component";
+import Movie from "./Movie";
 
 export default class Movies extends Component {
-  override template() {
-    const movies = moviesStore.getState();
+	override template() {
+		const movies = moviesStore.getState();
 
-    if (movies === null)
-      return html`
+		if (movies === null)
+			return html`
         <ul class="thumbnail-list">
           ${new Array(MOVIE_ITEM_PER_PAGE).fill(null).map(
-            () => `
+						() => `
               <li class="item">
                 <div class="skeleton" style="width:200px; height:300px"></div>
                 <div class="item-desc">
@@ -23,12 +23,12 @@ export default class Movies extends Component {
                   <div class="skeleton" style="width:150px; height:16px"></div>
                 </div>
               </li>`,
-          )}
+					)}
         </ul>
       `;
 
-    if (movies.length === 0)
-      return html`
+		if (movies.length === 0)
+			return html`
         <div class="result-not-found">
           <img src="./images/woowawa_planet.svg" alt="woowawa_planet" />
           <div>
@@ -40,33 +40,36 @@ export default class Movies extends Component {
         </div>
       `;
 
-    return html`
+		return html`
       <ul class="thumbnail-list">
         <slot name="thumbnail-list"></slot>
         ${movies.map((movie) => new Movie(movie))}
       </ul>
     `;
-  }
+	}
 
-  override addEventListener() {
-    forEach((thumbnail) => {
-      thumbnail.addEventListener('load', () => thumbnail.classList.remove('picture'));
-    }, this.element.querySelectorAll('img.thumbnail'));
+	override addEventListener() {
+		forEach((thumbnail) => {
+			thumbnail.addEventListener("load", () =>
+				thumbnail.classList.remove("picture"),
+			);
+		}, this.element.querySelectorAll("img.thumbnail"));
 
-    eventHandlerInstance.addEventListener({
-      eventType: 'click',
-      callback: async ({ currentTarget }) => {
-        if (!currentTarget.dataset.id) throw new Error(errorMessage.get('dataId'));
+		eventHandlerInstance.addEventListener({
+			eventType: "click",
+			callback: async ({ currentTarget }) => {
+				if (!currentTarget.dataset.id)
+					throw new Error(errorMessage.get("dataId"));
 
-        const id = Number(currentTarget.dataset.id);
+				const id = Number(currentTarget.dataset.id);
 
-        const movieDetailResponse = await serverStore.query({
-          queryFn: () => MovieApiClient.getDetail({ id }),
-          queryKey: ['movie-detail', id],
-        });
-        movieDetailResponseStore.setState(movieDetailResponse);
-      },
-      dataAction: 'movie-detail',
-    });
-  }
+				const movieDetailResponse = await serverStore.query({
+					queryFn: () => MovieApiClient.getDetail({ id }),
+					queryKey: ["movie-detail", id],
+				});
+				movieDetailResponseStore.setState(movieDetailResponse);
+			},
+			dataAction: "movie-detail",
+		});
+	}
 }

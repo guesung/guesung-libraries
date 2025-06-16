@@ -1,18 +1,18 @@
-import { LocalStorageKeyType } from './type';
+import { LocalStorageKeyType } from "./type";
 
 export default class LocalStorage {
-  static get<TLocalStorageValue>(key: LocalStorageKeyType) {
-    const value = localStorage.getItem(key);
+	static get<TLocalStorageValue>(key: LocalStorageKeyType) {
+		const value = localStorage.getItem(key);
 
-    if (!value) return null;
-    return JSON.parse(value) as TLocalStorageValue;
-  }
+		if (!value) return null;
+		return JSON.parse(value) as TLocalStorageValue;
+	}
 
-  static set(key: LocalStorageKeyType, value: any) {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
+	static set(key: LocalStorageKeyType, value: any) {
+		localStorage.setItem(key, JSON.stringify(value));
+	}
 
-  static remove(key: LocalStorageKeyType) {
-    localStorage.removeItem(key);
-  }
+	static remove(key: LocalStorageKeyType) {
+		localStorage.removeItem(key);
+	}
 }

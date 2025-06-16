@@ -1,38 +1,46 @@
-import { DEFAULT_BACK_DROP_URL } from '@/constants';
-import { eventHandlerInstance } from '@/modules';
-import { movieDetailResponseStore, movieRateStore } from '@/store';
-import { $, html } from '@/utils';
-import { join, map, pipe, toArray } from '@fxts/core';
-import Modal from './common/Modal';
+import { DEFAULT_BACK_DROP_URL } from "@/constants";
+import { eventHandlerInstance } from "@/modules";
+import { movieDetailResponseStore, movieRateStore } from "@/store";
+import { $, html } from "@/utils";
+import { join, map, pipe, toArray } from "@fxts/core";
+import Modal from "./common/Modal";
 
 const RATE_MAP: Record<number, string> = {
-  2: '최악이에요',
-  4: '별로에요',
-  6: '보통이에요',
-  8: '재미있어요',
-  10: '명작이에요',
+	2: "최악이에요",
+	4: "별로에요",
+	6: "보통이에요",
+	8: "재미있어요",
+	10: "명작이에요",
 };
 
 export default class MovieDetailModal extends Modal {
-  override id = 'movie-detail-modal';
+	override id = "movie-detail-modal";
 
-  override setup() {
-    this.subsribe([movieDetailResponseStore, movieRateStore]);
-  }
+	override setup() {
+		this.subsribe([movieDetailResponseStore, movieRateStore]);
+	}
 
-  override template() {
-    const movieDetail = movieDetailResponseStore.getState();
+	override template() {
+		const movieDetail = movieDetailResponseStore.getState();
 
-    if (!movieDetail) return html`<div></div>`;
+		if (!movieDetail) return html`<div></div>`;
 
-    const { backdrop_path, title, release_date, genres, overview, vote_average, id } = movieDetail;
+		const {
+			backdrop_path,
+			title,
+			release_date,
+			genres,
+			overview,
+			vote_average,
+			id,
+		} = movieDetail;
 
-    const currentMovieRate = movieRateStore.getState()[id] ?? 6;
+		const currentMovieRate = movieRateStore.getState()[id] ?? 6;
 
-    const backgroundImage = backdrop_path
-      ? `${DEFAULT_BACK_DROP_URL}/${backdrop_path}`
-      : './images/default_thumbnail.jpeg';
-    return html`
+		const backgroundImage = backdrop_path
+			? `${DEFAULT_BACK_DROP_URL}/${backdrop_path}`
+			: "./images/default_thumbnail.jpeg";
+		return html`
       <div>
         <div class="modal-background active" id="modalBackground" data-action="close-movie-detail-modal-outside">
           <div class="modal fade" data-action="not-close-movie-detail-modal">
@@ -49,9 +57,9 @@ export default class MovieDetailModal extends Modal {
                   <p class="category">
                     ${new Date(release_date).getFullYear()} ·
                     ${pipe(
-                      map((genre) => genre.name, genres),
-                      join(', '),
-                    )}
+											map((genre) => genre.name, genres),
+											join(", "),
+										)}
                   </p>
                   <p class="rate">
                     <span>평균</span>
@@ -66,13 +74,13 @@ export default class MovieDetailModal extends Modal {
                   <div class="main">
                     <div>
                       ${pipe(
-                        Object.keys(RATE_MAP),
-                        map(
-                          (rate) =>
-                            `<img src="./images/star_${currentMovieRate >= Number(rate) ? 'filled' : 'empty'}.png" class="star" data-action="change-rate" data-id="${id}" data-rate="${rate}" />`,
-                        ),
-                        toArray,
-                      )}
+												Object.keys(RATE_MAP),
+												map(
+													(rate) =>
+														`<img src="./images/star_${currentMovieRate >= Number(rate) ? "filled" : "empty"}.png" class="star" data-action="change-rate" data-id="${id}" data-rate="${rate}" />`,
+												),
+												toArray,
+											)}
                     </div>
                     <p>
                       <span>${RATE_MAP[currentMovieRate]}</span>
@@ -91,87 +99,89 @@ export default class MovieDetailModal extends Modal {
         </div>
       </div>
     `;
-  }
+	}
 
-  override onRender() {
-    const modal = this.element.querySelector('.moda');
-    modal?.addEventListener('animationend', () => {
-      modal?.classList.remove('fade');
+	override onRender() {
+		const modal = this.element.querySelector(".moda");
+		modal?.addEventListener("animationend", () => {
+			modal?.classList.remove("fade");
 
-      setTimeout(() => {
-        modal?.classList.add('fade', 'dispose');
-        modal?.addEventListener('animationend', () => {
-          modal?.remove();
-        });
-      }, 1000);
-    });
+			setTimeout(() => {
+				modal?.classList.add("fade", "dispose");
+				modal?.addEventListener("animationend", () => {
+					modal?.remove();
+				});
+			}, 1000);
+		});
 
-    const modalImage = $('.modal-image > img?', this.element);
-    if (!modalImage) return;
-    modalImage.addEventListener('load', () => modalImage.classList.remove('picture'));
-  }
+		const modalImage = $(".modal-image > img?", this.element);
+		if (!modalImage) return;
+		modalImage.addEventListener("load", () =>
+			modalImage.classList.remove("picture"),
+		);
+	}
 
-  override addEventListener() {
-    super.addEventListener();
+	override addEventListener() {
+		super.addEventListener();
 
-    eventHandlerInstance.addEventListener({
-      eventType: 'click',
-      callback: () => this.remove(),
-      dataAction: 'close-movie-detail-modal-outside',
-      notTriggerDataAction: 'not-close-movie-detail-modal',
-    });
+		eventHandlerInstance.addEventListener({
+			eventType: "click",
+			callback: () => this.remove(),
+			dataAction: "close-movie-detail-modal-outside",
+			notTriggerDataAction: "not-close-movie-detail-modal",
+		});
 
-    eventHandlerInstance.addEventListener({
-      eventType: 'click',
-      callback: () => this.remove(),
-      dataAction: 'close-movie-detail-modal-button',
-    });
+		eventHandlerInstance.addEventListener({
+			eventType: "click",
+			callback: () => this.remove(),
+			dataAction: "close-movie-detail-modal-button",
+		});
 
-    eventHandlerInstance.addEventListener({
-      eventType: 'keydown',
-      callback: ({ event }) => {
-        if ((event as KeyboardEvent).key === 'Escape') this.remove();
-      },
-    });
+		eventHandlerInstance.addEventListener({
+			eventType: "keydown",
+			callback: ({ event }) => {
+				if ((event as KeyboardEvent).key === "Escape") this.remove();
+			},
+		});
 
-    eventHandlerInstance.addEventListener({
-      eventType: 'click',
-      callback: ({ target }) => {
-        const { id, rate } = target.dataset;
+		eventHandlerInstance.addEventListener({
+			eventType: "click",
+			callback: ({ target }) => {
+				const { id, rate } = target.dataset;
 
-        if (!id || !rate) return;
+				if (!id || !rate) return;
 
-        const newMovieRate = {
-          ...movieRateStore.getState(),
-          [id]: Number(rate),
-        };
+				const newMovieRate = {
+					...movieRateStore.getState(),
+					[id]: Number(rate),
+				};
 
-        movieRateStore.setState(newMovieRate);
-      },
-      dataAction: 'change-rate',
-    });
+				movieRateStore.setState(newMovieRate);
+			},
+			dataAction: "change-rate",
+		});
 
-    eventHandlerInstance.addEventListener({
-      eventType: 'popstate',
-      callbackWindow: () => {
-        movieDetailResponseStore.reset();
-        this.enableScrollOutside();
-      },
-    });
-  }
+		eventHandlerInstance.addEventListener({
+			eventType: "popstate",
+			callbackWindow: () => {
+				movieDetailResponseStore.reset();
+				this.enableScrollOutside();
+			},
+		});
+	}
 
-  override onShow() {
-    const movieDetail = movieDetailResponseStore.getState();
+	override onShow() {
+		const movieDetail = movieDetailResponseStore.getState();
 
-    if (!movieDetail) return;
+		if (!movieDetail) return;
 
-    this.disableScrollOutside();
-    window.history.pushState({}, '');
-  }
+		this.disableScrollOutside();
+		window.history.pushState({}, "");
+	}
 
-  override onUnmount() {
-    this.enableScrollOutside();
-    movieDetailResponseStore.reset();
-    window.history.back();
-  }
+	override onUnmount() {
+		this.enableScrollOutside();
+		movieDetailResponseStore.reset();
+		window.history.back();
+	}
 }

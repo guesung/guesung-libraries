@@ -1,30 +1,30 @@
-import { $ } from '@/utils';
-import { Component } from '../core';
-import { Props, State } from '../core/Component';
+import { $ } from "@/utils";
+import { Component } from "../core";
+import { Props, State } from "../core/Component";
 
-export default abstract class Modal<TProps extends Props = {}, TState extends State = {}> extends Component<
-  TProps,
-  TState
-> {
-  abstract id: string;
+export default abstract class Modal<
+	TProps extends Props = {},
+	TState extends State = {},
+> extends Component<TProps, TState> {
+	abstract id: string;
 
-  update() {
-    this.render();
-    this.show();
-  }
+	update() {
+		this.render();
+		this.show();
+	}
 
-  show() {
-    $(`#${this.id}`).appendChild(this.element);
-    this.onShow();
-  }
+	show() {
+		$(`#${this.id}`).appendChild(this.element);
+		this.onShow();
+	}
 
-  onShow() {}
+	onShow() {}
 
-  disableScrollOutside() {
-    document.body.style.overflow = 'hidden';
-  }
+	disableScrollOutside() {
+		document.body.style.overflow = "hidden";
+	}
 
-  enableScrollOutside() {
-    document.body.style.overflow = 'scroll';
-  }
+	enableScrollOutside() {
+		document.body.style.overflow = "scroll";
+	}
 }

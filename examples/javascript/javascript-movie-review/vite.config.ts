@@ -1,6 +1,6 @@
 export default {
-  base: './',
-  resolve: {
-    alias: [{ find: '@', replacement: '/src' }],
-  },
+	base: "./",
+	resolve: {
+		alias: [{ find: "@", replacement: "/src" }],
+	},
 };
