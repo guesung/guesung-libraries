@@ -27,7 +27,8 @@ export const $ = <
 	if (!target && !selector.endsWith("?"))
 		throw new Error(`dom not found: ${String(context)}, ${selector}`);
 
-	return target;
+	// biome-ignore lint/style/noNonNullAssertion: TODO
+	return target!;
 };
 
 export const escapeHTML = (value: unknown) => {
