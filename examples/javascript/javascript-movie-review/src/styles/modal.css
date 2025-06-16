@@ -1,0 +1,189 @@
+@import './colors.css';
+
+/* modal.css */
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경을 위해 설정 */
+  backdrop-filter: blur(10px); /* 블러 효과 적용 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  visibility: hidden; /* 모달이 기본적으로 보이지 않도록 설정 */
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.modal-background.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  background-color: var(--color-bluegray-90);
+  padding: 20px;
+  border-radius: 16px;
+  color: white;
+  z-index: 2;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.close-modal {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-container {
+  display: flex;
+}
+
+.modal-image img {
+  width: 380px;
+  border-radius: 16px;
+}
+
+.modal-description {
+  width: 100%;
+  padding: 8px;
+  margin-left: 16px;
+  line-height: 1.6rem;
+}
+
+.modal-description .category {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-description .rate > img {
+  position: relative;
+  top: 5px;
+}
+
+.modal-description > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.modal-description h2 {
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+}
+
+.detail {
+  max-height: 430px;
+  overflow-y: auto;
+}
+
+.sub-title {
+  font-weight: 700;
+}
+
+.modal-description .rate {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-description .my-rate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.modal-description .my-rate .main {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 태블릿 */
+@media (max-width: 1120px) {
+  .modal-background {
+    align-items: end;
+  }
+  .main-info {
+    text-align: center;
+  }
+  .modal-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-image img {
+    width: 180px;
+  }
+  .rate {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 800px) {
+  .modal-background {
+    align-items: end;
+  }
+  .modal {
+    padding-top: 60px;
+  }
+  .modal-description {
+    text-align: center;
+  }
+  .my-rate .main {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-image img {
+    display: none;
+  }
+  .rate {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.modal.fade {
+  animation: modal-fade 0.3s ease-out;
+}
+
+.modal.fade.dispose {
+  animation: alert-fade 0.3s ease-in;
+  animation-direction: reverse;
+  animation-fill-mode: forwards;
+}
+
+@keyframes modal-fade {
+  from {
+    opacity: 0.1;
+    flex-grow: 0.0001;
+  }
+
+  to {
+    opacity: 1;
+    flex-grow: 1;
+  }
+}
