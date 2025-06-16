@@ -1,16 +1,16 @@
 {
-  "scripts": {
-    "dev": "lerna run dev",
-    "build": "lerna run build",
-    "test": "lerna run test",
-    "lint": "lerna run lint",
-    "build:package": "lerna run build --scope=@guesung/*",
-    "build:example": "lerna run build --scope=@guesung/example-*",
-    "type-check": "lerna run type-check"
-  },
-  "devDependencies": {
-    "lerna": "^8.2.2",
-    "typescript": "^5.8.3"
-  },
-  "dependencies": {}
+	"scripts": {
+		"dev": "lerna run dev",
+		"build": "lerna run build",
+		"test": "lerna run test",
+		"lint": "lerna run lint",
+		"build:package": "lerna run build --scope=@guesung/*",
+		"build:example": "lerna run build --scope=@guesung/example-*",
+		"type-check": "lerna run type-check"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"lerna": "^8.2.2",
+		"typescript": "^5.8.3"
+	}
 }
