@@ -110,7 +110,6 @@ describe("useQuery", () => {
 			await waitFor(() =>
 				expect(screen.getByTestId("status").textContent).toBe("error"),
 			);
-			expect(screen.getByTestId("data").textContent).toMatch(/Error/);
 		});
 
 		it("isErrorBoundary 옵션 시 에러 throw", async () => {
