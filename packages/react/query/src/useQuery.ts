@@ -13,6 +13,8 @@ interface UseQueryProps<T> {
   queryFn: () => Promise<T>;
   initialData?: Partial<T>;
   isSuspense?: boolean;
+  refetchOnWindowFocus?: boolean;
+  refetchOnNetworkOnline?: boolean;
 }
 
 const AUTO_REFETCH_INTERVAL = 5 * 60 * 1000; // 5분
@@ -37,6 +39,8 @@ export default function useQuery<T>({
   queryFn,
   initialData,
   isSuspense = false,
+  refetchOnWindowFocus = true,
+  refetchOnNetworkOnline = true,
 }: UseQueryProps<T>) {
   const data = useQueryData<T | undefined>(queryKey);
   const status = useQueryStatus(queryKey);
@@ -71,6 +75,18 @@ export default function useQuery<T>({
 
     const interval = setInterval(() => fetchData(true), AUTO_REFETCH_INTERVAL);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (!refetchOnWindowFocus) return;
+    window.addEventListener("focus", refetch);
+    return () => window.removeEventListener("focus", refetch);
+  }, []);
+
+  useEffect(() => {
+    if (!refetchOnNetworkOnline) return;
+    window.addEventListener("online", refetch);
+    return () => window.removeEventListener("online", refetch);
   }, []);
 
   const refetch = () => fetchData(true);
