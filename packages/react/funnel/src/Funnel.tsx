@@ -63,7 +63,7 @@ export const useFunnelContext = () => {
 
 	if (value === null)
 		throw new Error(
-			`FunnelContext value must be used within a FunnelProvider Component!!`,
+			"FunnelContext value must be used within a FunnelProvider Component!!",
 		);
 
 	return value;

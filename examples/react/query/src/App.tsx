@@ -25,8 +25,11 @@ function App() {
 		<div>
 			<h4>제목 : {data?.title}</h4>
 			<p>{data?.body}</p>
-			<button onClick={() => refetch()}>refetch</button>
+			<button type="button" onClick={() => refetch()}>
+				refetch
+			</button>
 			<button
+				type="button"
 				onClick={() =>
 					setQueryData("test", {
 						title: "test",

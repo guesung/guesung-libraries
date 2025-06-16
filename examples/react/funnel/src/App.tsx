@@ -25,7 +25,9 @@ function Step1() {
 	return (
 		<div>
 			<h1>Step 1</h1>
-			<button onClick={goNextStep}>Next</button>
+			<button type="button" onClick={goNextStep}>
+				Next
+			</button>
 		</div>
 	);
 }
@@ -35,7 +37,9 @@ function Step2() {
 	return (
 		<div>
 			<h1>Step 2</h1>
-			<button onClick={goNextStep}>Next</button>
+			<button type="button" onClick={goNextStep}>
+				Next
+			</button>
 		</div>
 	);
 }
@@ -45,7 +49,9 @@ function Step3() {
 	return (
 		<div>
 			<h1>Step 3</h1>
-			<button onClick={resetStep}>Reset</button>
+			<button type="button" onClick={resetStep}>
+				Reset
+			</button>
 		</div>
 	);
 }

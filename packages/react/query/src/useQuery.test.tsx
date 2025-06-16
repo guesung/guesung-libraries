@@ -1,4 +1,5 @@
-import React, { Suspense, Component } from "react";
+import type React from "react";
+import { Suspense, Component } from "react";
 import { render, screen, act, waitFor } from "@testing-library/react";
 import useQuery from "./useQuery";
 
@@ -11,6 +12,7 @@ function TestComponent({
 	isErrorBoundary,
 	refetchOnWindowFocus,
 	refetchOnReconnect,
+	// biome-ignore lint/suspicious/noExplicitAny: TODO
 }: any) {
 	const { data, status, refetch } = useQuery({
 		queryKey,
@@ -25,7 +27,9 @@ function TestComponent({
 		<div>
 			<div data-testid="status">{status}</div>
 			<div data-testid="data">{String(data)}</div>
-			<button onClick={refetch}>refetch</button>
+			<button type="button" onClick={refetch}>
+				refetch
+			</button>
 		</div>
 	);
 }
@@ -91,7 +95,7 @@ describe("useQuery", () => {
 			expect(screen.getByTestId("data").textContent).toBe("init");
 			// fetch 완료 후 값이 바뀌는지 확인
 			act(() => {
-				resolve!("fetched");
+				resolve("fetched");
 			});
 			await waitFor(() =>
 				expect(screen.getByTestId("data").textContent).toBe("fetched"),
@@ -221,9 +225,12 @@ describe("useQuery", () => {
 	describe("캐싱 및 클린업", () => {
 		it("fetch 중 중복 호출 방지 (promise 캐싱)", async () => {
 			let resolve: (v: string) => void;
-			const queryFn = jest
-				.fn()
-				.mockImplementation(() => new Promise((res) => (resolve = res)));
+			const queryFn = jest.fn().mockImplementation(
+				() =>
+					new Promise((res) => {
+						resolve = res;
+					}),
+			);
 			render(<TestComponent queryFn={queryFn} />);
 			// fetch 중 여러 번 refetch
 			act(() => {
@@ -233,7 +240,7 @@ describe("useQuery", () => {
 			// 아직 resolve 안 됨
 			expect(queryFn).toHaveBeenCalledTimes(1);
 			act(() => {
-				resolve!("done");
+				resolve("done");
 			});
 			await waitFor(() =>
 				expect(screen.getByTestId("data").textContent).toBe("done"),

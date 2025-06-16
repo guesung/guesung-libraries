@@ -7,10 +7,10 @@ const dataObservers: Record<QueryKey, Observer> = {};
 
 // 테스트용: 모든 캐시 초기화
 export function __clearAll() {
-	Object.keys(dataStore).forEach((k) => delete dataStore[k]);
-	Object.keys(dataObservers).forEach((k) => delete dataObservers[k]);
-	Object.keys(statusStore).forEach((k) => delete statusStore[k]);
-	Object.keys(statusObservers).forEach((k) => delete statusObservers[k]);
+	for (const k of Object.keys(dataStore)) delete dataStore[k];
+	for (const k of Object.keys(dataObservers)) delete dataObservers[k];
+	for (const k of Object.keys(statusStore)) delete statusStore[k];
+	for (const k of Object.keys(statusObservers)) delete statusObservers[k];
 }
 
 export const setQueryData = (key: QueryKey, value: unknown) => {
@@ -23,7 +23,7 @@ export const getQueryData = (key: QueryKey) => dataStore[key];
 export const subscribeQueryData = (key: QueryKey, listener: Listener) => {
 	if (!dataObservers[key]) dataObservers[key] = new Observer();
 	dataObservers[key].add(listener);
-	return () => dataObservers[key]!.remove(listener);
+	return () => dataObservers[key]?.remove(listener);
 };
 
 // Status
@@ -42,5 +42,5 @@ export const getQueryStatus = (key: QueryKey): Status =>
 export const subscribeQueryStatus = (key: QueryKey, listener: Listener) => {
 	if (!statusObservers[key]) statusObservers[key] = new Observer();
 	statusObservers[key].add(listener);
-	return () => statusObservers[key]!.remove(listener);
+	return () => statusObservers[key]?.remove(listener);
 };

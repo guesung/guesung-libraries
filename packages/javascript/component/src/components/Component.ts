@@ -1,4 +1,4 @@
-import { Observer } from "@/modules";
+import type { Observer } from "@/modules";
 import type { HTMLType, StrictObject } from "@/types";
 import { $, html } from "@/utils";
 import { forEach } from "@fxts/core";
@@ -9,7 +9,7 @@ export type State = StrictObject | null;
 export default abstract class Component<
 	TProps extends Props = Record<string, unknown>,
 	TState extends State = Record<string, unknown>,
-> implements Observer<any>
+> implements Observer<unknown>
 {
 	state = {} as TState;
 
@@ -24,6 +24,7 @@ export default abstract class Component<
 		this.addEventListener();
 	}
 
+	// biome-ignore lint/suspicious/noExplicitAny: TODO
 	subscribe(stores: any[]) {
 		forEach((store) => {
 			store.subscribe(this.update.bind(this));
@@ -72,7 +73,10 @@ export default abstract class Component<
 	}
 
 	get element() {
-		return this.#element!;
+		if (!this.#element)
+			throw new Error("Component element is not initialized yet.");
+
+		return this.#element;
 	}
 
 	get props() {

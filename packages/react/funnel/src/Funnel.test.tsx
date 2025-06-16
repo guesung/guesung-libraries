@@ -44,10 +44,18 @@ describe("Funnel", () => {
 
 function GoNextStepButton() {
 	const { goNextStep } = useFunnelContext();
-	return <button onClick={goNextStep}>Go Next Step</button>;
+	return (
+		<button type="button" onClick={goNextStep}>
+			Go Next Step
+		</button>
+	);
 }
 
 function GoPrevStepButton() {
 	const { goPrevStep } = useFunnelContext();
-	return <button onClick={goPrevStep}>Go Prev Step</button>;
+	return (
+		<button type="button" onClick={goPrevStep}>
+			Go Prev Step
+		</button>
+	);
 }

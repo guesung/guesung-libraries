@@ -3,7 +3,8 @@
 		"dev": "lerna run dev",
 		"build": "lerna run build",
 		"test": "lerna run test",
-		"lint": "lerna run lint",
+		"format": "biome format --write",
+		"lint": "biome lint --write",
 		"build:package": "lerna run build --scope=@guesung/*",
 		"build:example": "lerna run build --scope=@guesung/example-*",
 		"type-check": "lerna run type-check"

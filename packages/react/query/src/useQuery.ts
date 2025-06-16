@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import {
 	clearQueryPromise,
 	getQueryPromise,
@@ -8,7 +8,7 @@ import { getQueryData, setQueryData, setQueryStatus } from "./QueryStore";
 import { useQueryData, useQueryStatus } from "./useQueryData";
 import type { Status } from "./type";
 
-interface UseQueryProps<T> {
+export interface UseQueryProps<T> {
 	queryKey: string;
 	queryFn: () => Promise<T>;
 	initialData?: Partial<T>;
@@ -47,7 +47,7 @@ export default function useQuery<T>({
 	const data = useQueryData<T | undefined>(queryKey);
 	const status = useQueryStatus(queryKey);
 
-	const fetchData = async () => {
+	const fetchData = useCallback(async () => {
 		setQueryStatus(queryKey, "pending");
 		try {
 			let promise = getQueryPromise(queryKey);
@@ -66,28 +66,28 @@ export default function useQuery<T>({
 			setQueryStatus(queryKey, "error");
 			clearQueryPromise(queryKey);
 		}
-	};
+	}, [queryKey, queryFn]);
 
 	useEffect(() => {
 		fetchData();
-	}, []);
+	}, [fetchData]);
 
 	useEffect(() => {
 		const interval = setInterval(fetchData, AUTO_REFETCH_INTERVAL);
 		return () => clearInterval(interval);
-	}, []);
+	}, [fetchData]);
 
 	useEffect(() => {
 		if (!refetchOnWindowFocus) return;
 		window.addEventListener("focus", fetchData);
 		return () => window.removeEventListener("focus", fetchData);
-	}, []);
+	}, [fetchData, refetchOnWindowFocus]);
 
 	useEffect(() => {
 		if (!refetchOnReconnect) return;
 		window.addEventListener("online", fetchData);
 		return () => window.removeEventListener("online", fetchData);
-	}, []);
+	}, [fetchData, refetchOnReconnect]);
 
 	if (isErrorBoundary && status === "error") throw getQueryData(queryKey);
 	if (isSuspense && status === "pending" && !data)
