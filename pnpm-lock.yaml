@@ -132,6 +132,12 @@ importers:
       '@emotion/styled':
         specifier: ^11.14.0
         version: 11.14.0(@emotion/react@11.14.0(@types/react@18.3.23)(react@18.3.1))(@types/react@18.3.23)(react@18.3.1)
+      '@guesung/funnel':
+        specifier: workspace:*
+        version: link:../../../packages/react/funnel
+      '@guesung/query':
+        specifier: workspace:*
+        version: link:../../../packages/react/query
       jest-fixed-jsdom:
         specifier: ^0.0.9
         version: 0.0.9(jest-environment-jsdom@29.7.0)

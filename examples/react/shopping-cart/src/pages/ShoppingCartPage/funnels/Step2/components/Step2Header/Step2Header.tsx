@@ -1,6 +1,6 @@
 import { ArrowBackIcon, Header } from "@/components";
 import { css } from "@emotion/react";
-import { useFunnelContext } from "@/modules";
+import { useFunnelContext } from "@guesung/funnel";
 
 export default function Step2Header() {
 	const { goPrevStep } = useFunnelContext();

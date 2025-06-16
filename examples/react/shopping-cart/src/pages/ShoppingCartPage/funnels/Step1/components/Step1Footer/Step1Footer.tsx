@@ -1,7 +1,7 @@
 import { Button, Text } from "@/components";
 import { css } from "@emotion/react";
 import * as S_Page from "@/pages/ShoppingCartPage/ShoppingCartPage.styles";
-import { useFunnelContext } from "@/modules";
+import { useFunnelContext } from "@guesung/funnel";
 import { useShoppingCartContext } from "@/pages/ShoppingCartPage/contexts";
 
 export default function Step1Footer() {

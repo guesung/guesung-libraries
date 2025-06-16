@@ -1,6 +1,6 @@
 import { ShoppingCartProvider } from "./contexts";
 import { Step1, Step2, Step3 } from "./funnels";
-import { Funnel } from "@/modules";
+import { Funnel } from "@guesung/funnel";
 
 export default function ShoppingCartPage() {
 	return (

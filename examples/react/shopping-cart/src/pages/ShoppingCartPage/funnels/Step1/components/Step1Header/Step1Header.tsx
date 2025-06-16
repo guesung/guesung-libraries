@@ -1,6 +1,6 @@
 import { Header, Text } from "@/components";
 import { css } from "@emotion/react";
-import { useFunnelContext } from "@/modules";
+import { useFunnelContext } from "@guesung/funnel";
 
 export default function Step1Header() {
 	const { resetStep } = useFunnelContext();
