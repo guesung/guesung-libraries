@@ -14,7 +14,7 @@
 		"package.json": "./package.json"
 	},
 	"scripts": {
-		"build": "rimraf dist && NODE_ENV=production rollup -c",
+		"build": "npx rimraf dist && NODE_ENV=production rollup -c",
 		"dev": "NODE_ENV=development rollup -c -w",
 		"type-check": "tsc --noEmit"
 	},
