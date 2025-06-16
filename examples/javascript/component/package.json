@@ -1,5 +1,5 @@
 {
-  "name": "component",
+  "name": "@guesung/example-javascript-component",
   "private": true,
   "version": "0.0.0",
   "type": "module",
