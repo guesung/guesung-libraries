@@ -1,6 +1,6 @@
 const queryPromises = new Map<string, Promise<unknown>>();
 
-// 테스트용: 모든 캐시 초기화
+/** @internal 테스트 전용 */
 export function __clearAll() {
 	queryPromises.clear();
 }

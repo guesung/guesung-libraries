@@ -5,7 +5,7 @@ import type { QueryKey, Status } from "./type";
 const dataStore: Record<QueryKey, unknown> = {};
 const dataObservers: Record<QueryKey, Observer> = {};
 
-// 테스트용: 모든 캐시 초기화
+/** @internal 테스트 전용 */
 export function __clearAll() {
 	for (const k of Object.keys(dataStore)) delete dataStore[k];
 	for (const k of Object.keys(dataObservers)) delete dataObservers[k];
