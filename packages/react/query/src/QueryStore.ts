@@ -5,6 +5,14 @@ import type { QueryKey, Status } from "./type";
 const dataStore: Record<QueryKey, unknown> = {};
 const dataObservers: Record<QueryKey, Observer> = {};
 
+// 테스트용: 모든 캐시 초기화
+export function __clearAll() {
+  Object.keys(dataStore).forEach((k) => delete dataStore[k]);
+  Object.keys(dataObservers).forEach((k) => delete dataObservers[k]);
+  Object.keys(statusStore).forEach((k) => delete statusStore[k]);
+  Object.keys(statusObservers).forEach((k) => delete statusObservers[k]);
+}
+
 export const setQueryData = (key: QueryKey, value: unknown) => {
   dataStore[key] = value;
   dataObservers[key]?.notify();
