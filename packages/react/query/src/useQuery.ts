@@ -14,7 +14,7 @@ interface UseQueryProps<T> {
   initialData?: Partial<T>;
   isSuspense?: boolean;
   refetchOnWindowFocus?: boolean;
-  refetchOnNetworkOnline?: boolean;
+  refetchOnReconnect?: boolean;
 }
 
 const AUTO_REFETCH_INTERVAL = 5 * 60 * 1000; // 5분
@@ -40,20 +40,16 @@ export default function useQuery<T>({
   initialData,
   isSuspense = false,
   refetchOnWindowFocus = true,
-  refetchOnNetworkOnline = true,
+  refetchOnReconnect = true,
 }: UseQueryProps<T>) {
   const data = useQueryData<T | undefined>(queryKey);
   const status = useQueryStatus(queryKey);
 
-  const fetchData = async (forceFetch = false) => {
+  const fetchData = async () => {
     setQueryStatus(queryKey, "pending");
     try {
-      if (data && !forceFetch) {
-        setQueryStatus(queryKey, "success");
-        return;
-      }
       let promise = getQueryPromise(queryKey);
-      if (!promise || forceFetch) {
+      if (!promise) {
         promise = queryFn();
         setQueryPromise(queryKey, promise);
       }
@@ -73,23 +69,21 @@ export default function useQuery<T>({
   useEffect(() => {
     fetchData();
 
-    const interval = setInterval(() => fetchData(true), AUTO_REFETCH_INTERVAL);
+    const interval = setInterval(fetchData, AUTO_REFETCH_INTERVAL);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (!refetchOnWindowFocus) return;
-    window.addEventListener("focus", refetch);
-    return () => window.removeEventListener("focus", refetch);
+    window.addEventListener("focus", fetchData);
+    return () => window.removeEventListener("focus", fetchData);
   }, []);
 
   useEffect(() => {
-    if (!refetchOnNetworkOnline) return;
-    window.addEventListener("online", refetch);
-    return () => window.removeEventListener("online", refetch);
+    if (!refetchOnReconnect) return;
+    window.addEventListener("online", fetchData);
+    return () => window.removeEventListener("online", fetchData);
   }, []);
-
-  const refetch = () => fetchData(true);
 
   if (status === "error") throw getQueryData(queryKey);
   if (!data && status === "pending" && isSuspense)
@@ -97,6 +91,6 @@ export default function useQuery<T>({
   return {
     data: data ?? initialData,
     status,
-    refetch,
+    refetch: fetchData,
   };
 }
