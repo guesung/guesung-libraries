@@ -62,7 +62,6 @@ export default function useQuery<T>({
 			setQueryStatus(queryKey, "success");
 			clearQueryPromise(queryKey);
 		} catch (error) {
-			setQueryData(queryKey, error);
 			setQueryStatus(queryKey, "error");
 			clearQueryPromise(queryKey);
 		}
