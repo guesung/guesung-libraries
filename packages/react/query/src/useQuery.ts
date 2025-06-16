@@ -13,6 +13,7 @@ interface UseQueryProps<T> {
   queryFn: () => Promise<T>;
   initialData?: Partial<T>;
   isSuspense?: boolean;
+  isErrorBoundary?: boolean;
   refetchOnWindowFocus?: boolean;
   refetchOnReconnect?: boolean;
 }
@@ -39,6 +40,7 @@ export default function useQuery<T>({
   queryFn,
   initialData,
   isSuspense = false,
+  isErrorBoundary = false,
   refetchOnWindowFocus = true,
   refetchOnReconnect = true,
 }: UseQueryProps<T>) {
@@ -85,8 +87,8 @@ export default function useQuery<T>({
     return () => window.removeEventListener("online", fetchData);
   }, []);
 
-  if (status === "error") throw getQueryData(queryKey);
-  if (!data && status === "pending" && isSuspense)
+  if (isErrorBoundary && status === "error") throw getQueryData(queryKey);
+  if (isSuspense && status === "pending" && !data)
     throw getQueryPromise(queryKey);
   return {
     data: data ?? initialData,
