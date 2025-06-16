@@ -12,6 +12,7 @@ interface UseQueryProps<T> {
   queryKey: string;
   queryFn: () => Promise<T>;
   initialData?: Partial<T>;
+  isSuspense?: boolean;
 }
 
 const AUTO_REFETCH_INTERVAL = 5 * 60 * 1000; // 5분
@@ -35,6 +36,7 @@ export default function useQuery<T>({
   queryKey,
   queryFn,
   initialData,
+  isSuspense = false,
 }: UseQueryProps<T>) {
   const data = useQueryData<T | undefined>(queryKey);
   const status = useQueryStatus(queryKey);
@@ -53,12 +55,13 @@ export default function useQuery<T>({
       }
 
       const response = await promise;
+
       setQueryData(queryKey, response);
       setQueryStatus(queryKey, "success");
       clearQueryPromise(queryKey);
     } catch (error) {
-      setQueryStatus(queryKey, "error");
       setQueryData(queryKey, error);
+      setQueryStatus(queryKey, "error");
       clearQueryPromise(queryKey);
     }
   };
@@ -73,7 +76,8 @@ export default function useQuery<T>({
   const refetch = () => fetchData(true);
 
   if (status === "error") throw getQueryData(queryKey);
-  if (!data && status === "pending") throw getQueryPromise(queryKey);
+  if (!data && status === "pending" && isSuspense)
+    throw getQueryPromise(queryKey);
   return {
     data: data ?? initialData,
     status,
