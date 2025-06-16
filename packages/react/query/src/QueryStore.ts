@@ -5,14 +5,6 @@ import type { QueryKey, Status } from "./type";
 const dataStore: Record<QueryKey, unknown> = {};
 const dataObservers: Record<QueryKey, Observer> = {};
 
-/** @internal 테스트 전용 */
-export function __clearAll() {
-	for (const k of Object.keys(dataStore)) delete dataStore[k];
-	for (const k of Object.keys(dataObservers)) delete dataObservers[k];
-	for (const k of Object.keys(statusStore)) delete statusStore[k];
-	for (const k of Object.keys(statusObservers)) delete statusObservers[k];
-}
-
 export const setQueryData = (key: QueryKey, value: unknown) => {
 	dataStore[key] = value;
 	dataObservers[key]?.notify();
@@ -44,3 +36,11 @@ export const subscribeQueryStatus = (key: QueryKey, listener: Listener) => {
 	statusObservers[key].add(listener);
 	return () => statusObservers[key]?.remove(listener);
 };
+
+/** @internal 테스트 전용 */
+export function __clearAll() {
+	for (const k of Object.keys(dataStore)) delete dataStore[k];
+	for (const k of Object.keys(dataObservers)) delete dataObservers[k];
+	for (const k of Object.keys(statusStore)) delete statusStore[k];
+	for (const k of Object.keys(statusObservers)) delete statusObservers[k];
+}

@@ -1,10 +1,5 @@
 const queryPromises = new Map<string, Promise<unknown>>();
 
-/** @internal 테스트 전용 */
-export function __clearAll() {
-	queryPromises.clear();
-}
-
 export function getQueryPromise(queryKey: string) {
 	return queryPromises.get(queryKey);
 }
@@ -15,4 +10,9 @@ export function setQueryPromise(queryKey: string, promise: Promise<unknown>) {
 
 export function clearQueryPromise(queryKey: string) {
 	queryPromises.delete(queryKey);
+}
+
+/** @internal 테스트 전용 */
+export function __clearAll() {
+	queryPromises.clear();
 }
