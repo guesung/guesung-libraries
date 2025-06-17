@@ -10,7 +10,7 @@ async function enableMocking() {
 		serviceWorker: {
 			url:
 				process.env.NODE_ENV === "production"
-					? "/react-shopping-cart/mockServiceWorker.js"
+					? "/guesung-libraries/react-shopping-cart/mockServiceWorker.js"
 					: "/mockServiceWorker.js",
 		},
 	});
