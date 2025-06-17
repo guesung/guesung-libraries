@@ -16,14 +16,14 @@ describe("Api 클래스", () => {
 	});
 
 	describe("생성자", () => {
-		it("baseUrl과 defaultOptions가 정상적으로 설정된다", () => {
+		it("생성자 호출 시 baseUrl과 defaultOptions가 정상적으로 설정된다.", () => {
 			const api2 = new Api("/test", { headers: { foo: "bar" } });
 			expect(api2).toBeInstanceOf(Api);
 		});
 	});
 
 	describe("get 메서드", () => {
-		it("GET 요청을 보내고 json을 반환한다", async () => {
+		it("get 메서드가 정상적으로 GET 요청을 보내고, 응답이 ok=true이면 json 데이터를 반환한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: true,
 				json: () => Promise.resolve({ data: 123 }),
@@ -37,7 +37,7 @@ describe("Api 클래스", () => {
 			);
 			expect(result).toEqual({ data: 123 });
 		});
-		it("응답이 실패(ok=false)일 때 에러를 throw한다", async () => {
+		it("get 메서드가 ok=false인 응답을 받으면 status와 statusText를 포함한 에러를 throw한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: false,
 				status: 404,
@@ -48,7 +48,7 @@ describe("Api 클래스", () => {
 	});
 
 	describe("post 메서드", () => {
-		it("POST 요청을 보내고 body를 전달한다", async () => {
+		it("post 메서드가 정상적으로 POST 요청을 보내고, body를 전달하면 ok=true 응답 시 undefined를 반환한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: true,
 				status: 201,
@@ -65,7 +65,7 @@ describe("Api 클래스", () => {
 				}),
 			);
 		});
-		it("응답이 실패(ok=false)일 때 에러를 throw한다", async () => {
+		it("post 메서드가 ok=false인 응답을 받으면 status와 statusText를 포함한 에러를 throw한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: false,
 				status: 400,
@@ -78,7 +78,7 @@ describe("Api 클래스", () => {
 	});
 
 	describe("put 메서드", () => {
-		it("PUT 요청을 보내고 body를 전달한다", async () => {
+		it("put 메서드가 정상적으로 PUT 요청을 보내고, body를 전달하면 ok=true 응답 시 undefined를 반환한다.", async () => {
 			fetchMock.mockResolvedValue({ ok: true, status: 200, statusText: "OK" });
 			await expect(
 				api.put("/baz", { body: { c: 3 } }),
@@ -91,7 +91,7 @@ describe("Api 클래스", () => {
 				}),
 			);
 		});
-		it("응답이 실패(ok=false)일 때 에러를 throw한다", async () => {
+		it("put 메서드가 ok=false인 응답을 받으면 status와 statusText를 포함한 에러를 throw한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: false,
 				status: 500,
@@ -104,7 +104,7 @@ describe("Api 클래스", () => {
 	});
 
 	describe("patch 메서드", () => {
-		it("PATCH 요청을 보내고 body를 전달한다", async () => {
+		it("patch 메서드가 정상적으로 PATCH 요청을 보내고, body를 전달하면 ok=true 응답 시 undefined를 반환한다.", async () => {
 			fetchMock.mockResolvedValue({ ok: true, status: 200, statusText: "OK" });
 			await expect(
 				api.patch("/patch", { body: { e: 5 } }),
@@ -117,7 +117,7 @@ describe("Api 클래스", () => {
 				}),
 			);
 		});
-		it("응답이 실패(ok=false)일 때 에러를 throw한다", async () => {
+		it("patch 메서드가 ok=false인 응답을 받으면 status와 statusText를 포함한 에러를 throw한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: false,
 				status: 403,
@@ -130,7 +130,7 @@ describe("Api 클래스", () => {
 	});
 
 	describe("delete 메서드", () => {
-		it("DELETE 요청을 보내고 body를 전달한다", async () => {
+		it("delete 메서드가 정상적으로 DELETE 요청을 보내고, body를 전달하면 ok=true 응답 시 undefined를 반환한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: true,
 				status: 204,
@@ -147,7 +147,7 @@ describe("Api 클래스", () => {
 				}),
 			);
 		});
-		it("응답이 실패(ok=false)일 때 에러를 throw한다", async () => {
+		it("delete 메서드가 ok=false인 응답을 받으면 status와 statusText를 포함한 에러를 throw한다.", async () => {
 			fetchMock.mockResolvedValue({
 				ok: false,
 				status: 401,

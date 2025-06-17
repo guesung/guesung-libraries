@@ -71,7 +71,7 @@ describe("useQuery", () => {
 	});
 
 	describe("기본 fetch 및 데이터 흐름", () => {
-		it("기본 데이터 fetch 동작", async () => {
+		it("쿼리 함수가 정상적으로 데이터를 fetch하면 status가 success가 되고, data가 올바르게 표시된다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("hello");
 			render(<TestComponent queryFn={queryFn} />);
 			expect(screen.getByTestId("status").textContent).toBe("pending");
@@ -82,7 +82,7 @@ describe("useQuery", () => {
 			expect(queryFn).toHaveBeenCalledTimes(1);
 		});
 
-		it("초기 데이터(initialData) 사용", async () => {
+		it("initialData가 주어지면 fetch 완료 전까지 data에 초기값이 표시되고, fetch 완료 후에는 최신 데이터로 갱신된다.", async () => {
 			let resolve: (v: string) => void;
 			const queryFn = jest.fn().mockImplementation(
 				() =>
@@ -104,7 +104,7 @@ describe("useQuery", () => {
 	});
 
 	describe("에러 및 Suspense 처리", () => {
-		it("에러 처리", async () => {
+		it("쿼리 함수가 reject되면 status가 error로 표시된다.", async () => {
 			const queryFn = jest.fn().mockRejectedValue(new Error("fail"));
 			render(<TestComponent queryFn={queryFn} />);
 			await waitFor(() =>
@@ -112,7 +112,7 @@ describe("useQuery", () => {
 			);
 		});
 
-		it("isErrorBoundary 옵션 시 에러 throw", async () => {
+		it("isErrorBoundary 옵션이 true일 때 쿼리 함수가 reject되면 ErrorBoundary가 에러를 표시한다.", async () => {
 			const queryFn = jest.fn().mockRejectedValue(new Error("fail"));
 			jest.spyOn(console, "error").mockImplementation(() => {});
 			render(
@@ -125,7 +125,7 @@ describe("useQuery", () => {
 			);
 		});
 
-		it("isSuspense 옵션 시 pending이면 promise throw", async () => {
+		it("isSuspense 옵션이 true이고 fetch가 pending이면 Suspense fallback이 먼저 표시되고, fetch 완료 후 data가 표시된다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("data");
 			render(
 				<Suspense fallback={<div data-testid="suspense">loading</div>}>
@@ -140,7 +140,7 @@ describe("useQuery", () => {
 	});
 
 	describe("refetch 및 자동 갱신", () => {
-		it("refetch 함수로 데이터 갱신", async () => {
+		it("refetch 함수를 호출하면 쿼리 함수가 다시 실행되어 최신 데이터로 갱신된다.", async () => {
 			let value = "first";
 			const queryFn = jest
 				.fn()
@@ -159,7 +159,7 @@ describe("useQuery", () => {
 			expect(queryFn).toHaveBeenCalledTimes(2);
 		});
 
-		it("자동 refetch(interval) 동작", async () => {
+		it("interval이 지나면 쿼리 함수가 자동으로 재실행되어 데이터가 갱신된다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("interval");
 			render(<TestComponent queryFn={queryFn} />);
 			await waitFor(() =>
@@ -171,7 +171,7 @@ describe("useQuery", () => {
 			await waitFor(() => expect(queryFn).toHaveBeenCalledTimes(2));
 		});
 
-		it("윈도우 focus 시 refetch 동작", async () => {
+		it("refetchOnWindowFocus 옵션이 true일 때 window focus 이벤트 발생 시 쿼리 함수가 재실행된다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("focus");
 			render(<TestComponent queryFn={queryFn} refetchOnWindowFocus />);
 			await waitFor(() =>
@@ -183,7 +183,7 @@ describe("useQuery", () => {
 			await waitFor(() => expect(queryFn).toHaveBeenCalledTimes(2));
 		});
 
-		it("refetchOnWindowFocus=false면 focus refetch 안함", async () => {
+		it("refetchOnWindowFocus 옵션이 false면 window focus 이벤트 발생 시 쿼리 함수가 재실행되지 않는다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("focus");
 			render(<TestComponent queryFn={queryFn} refetchOnWindowFocus={false} />);
 			await waitFor(() =>
@@ -196,7 +196,7 @@ describe("useQuery", () => {
 			expect(queryFn).toHaveBeenCalledTimes(1);
 		});
 
-		it("온라인 복구 시 refetch 동작", async () => {
+		it("refetchOnReconnect 옵션이 true일 때 online 이벤트 발생 시 쿼리 함수가 재실행된다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("online");
 			render(<TestComponent queryFn={queryFn} refetchOnReconnect />);
 			await waitFor(() =>
@@ -208,7 +208,7 @@ describe("useQuery", () => {
 			await waitFor(() => expect(queryFn).toHaveBeenCalledTimes(2));
 		});
 
-		it("refetchOnReconnect=false면 online refetch 안함", async () => {
+		it("refetchOnReconnect 옵션이 false면 online 이벤트 발생 시 쿼리 함수가 재실행되지 않는다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("online");
 			render(<TestComponent queryFn={queryFn} refetchOnReconnect={false} />);
 			await waitFor(() =>
@@ -222,7 +222,7 @@ describe("useQuery", () => {
 	});
 
 	describe("캐싱 및 클린업", () => {
-		it("fetch 중 중복 호출 방지 (promise 캐싱)", async () => {
+		it("fetch가 진행 중일 때 중복 refetch 호출 시 쿼리 함수가 한 번만 실행되어 promise가 재사용된다.", async () => {
 			let resolve: (v: string) => void;
 			const queryFn = jest.fn().mockImplementation(
 				() =>
@@ -246,7 +246,7 @@ describe("useQuery", () => {
 			);
 		});
 
-		it("unmount 시 interval, 이벤트 리스너 해제", async () => {
+		it("컴포넌트가 unmount될 때 interval과 window 이벤트 리스너가 정상적으로 해제된다.", async () => {
 			const queryFn = jest.fn().mockResolvedValue("bye");
 			const { unmount } = render(<TestComponent queryFn={queryFn} />);
 			unmount();

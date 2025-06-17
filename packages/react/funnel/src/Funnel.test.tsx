@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Funnel, { useFunnelContext } from "./Funnel";
 
 describe("Funnel", () => {
-	test("초기 step에 맞는 Step만 렌더링된다", () => {
+	test("Funnel 컴포넌트가 initialStep에 해당하는 Step만 렌더링한다.", () => {
 		render(
 			<Funnel initialStep={2}>
 				<Funnel.Step index={1}>Step1</Funnel.Step>
@@ -23,7 +23,7 @@ describe("Funnel", () => {
 			);
 		}
 
-		test("resetStep 함수는 step을 초기값으로 되돌린다", async () => {
+		test("resetStep 함수를 호출하면 step이 initialStep 값으로 되돌아간다.", async () => {
 			history.pushState(null, "", "?step=2"); // Step2가 보이도록 쿼리스트링 세팅
 			render(
 				<Funnel initialStep={2}>
@@ -42,7 +42,7 @@ describe("Funnel", () => {
 			});
 		});
 
-		test("popstate 이벤트 발생 시 step이 쿼리스트링에 맞게 변경된다", () => {
+		test("popstate 이벤트가 발생하면 step이 쿼리스트링의 step 값에 맞게 변경된다.", () => {
 			history.pushState(null, "", "?step=1");
 			render(
 				<Funnel initialStep={1}>
@@ -55,7 +55,7 @@ describe("Funnel", () => {
 			expect(screen.getByText("Step2")).toBeInTheDocument();
 		});
 
-		test("FunnelContext를 Provider 없이 사용하면 에러를 던진다", () => {
+		test("FunnelContext를 Provider 없이 사용하면 에러가 발생한다.", () => {
 			function BadComponent() {
 				useFunnelContext();
 				return null;
@@ -63,13 +63,13 @@ describe("Funnel", () => {
 			expect(() => render(<BadComponent />)).toThrow();
 		});
 
-		test("Funnel의 children이 Step이 아니어도 렌더링된다", () => {
+		test("Funnel의 children이 Step 컴포넌트가 아니어도 정상적으로 렌더링된다.", () => {
 			render(<Funnel>hello</Funnel>);
 			expect(screen.getByText("hello")).toBeInTheDocument();
 		});
 	});
 
-	test("goNextStep 함수를 호출하면 다음 step으로 이동한다", async () => {
+	test("goNextStep 함수를 호출하면 다음 step으로 이동하여 해당 Step이 렌더링된다.", async () => {
 		history.pushState(null, "", "?step=1"); // Step1이 보이도록 쿼리스트링 세팅
 		const { getByRole } = render(
 			<Funnel initialStep={1}>
@@ -88,7 +88,7 @@ describe("Funnel", () => {
 		});
 	});
 
-	test("goPrevStep 함수를 호출하면 이전 step으로 이동한다", () => {
+	test("goPrevStep 함수를 호출하면 이전 step으로 이동하여 해당 Step이 렌더링된다.", () => {
 		const { getByRole } = render(
 			<Funnel initialStep={2}>
 				<Funnel.Step index={1}>Step1</Funnel.Step>

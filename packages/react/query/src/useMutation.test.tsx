@@ -2,28 +2,27 @@ import { renderHook, act, waitFor } from "@testing-library/react";
 import useMutation from "./useMutation";
 
 describe("useMutation", () => {
-	it("초기 status는 idle이어야 한다", () => {
+	it("useMutation 훅을 사용하면 초기 status가 idle로 설정된다.", () => {
 		const { result } = renderHook(() =>
 			useMutation({ mutationFn: async () => {} }),
 		);
 		expect(result.current.status).toBe("idle");
 	});
 
-	it("mutate 호출 시 status가 pending→success로 바뀐다", async () => {
+	it("mutate 함수를 호출하면 status가 pending에서 success로 바뀌고, mutationFn이 올바르게 호출된다.", async () => {
 		const mutationFn = jest.fn().mockResolvedValue("ok");
 		const { result } = renderHook(() => useMutation({ mutationFn }));
 		act(() => {
 			result.current.mutate("foo");
 		});
 		expect(result.current.status).toBe("pending");
-		// status가 success가 될 때까지 기다림
 		await waitFor(() => {
 			expect(result.current.status).toBe("success");
 		});
 		expect(mutationFn).toHaveBeenCalledWith("foo");
 	});
 
-	it("mutate 실패 시 status가 error로 바뀌고 에러를 throw한다", async () => {
+	it("mutate 함수 실행 시 에러가 발생하면 status가 error로 바뀌고, 에러가 throw된다.", async () => {
 		const error = new Error("fail");
 		const mutationFn = jest.fn().mockRejectedValue(error);
 		const { result } = renderHook(() => useMutation({ mutationFn }));
@@ -39,7 +38,7 @@ describe("useMutation", () => {
 		expect(thrown).toBe(error);
 	});
 
-	it("onMutate, onSuccess, onError, onSettled 콜백이 올바르게 호출된다", async () => {
+	it("onMutate, onSuccess, onSettled 콜백이 mutate 실행 시 올바르게 호출된다.", async () => {
 		const mutationFn = jest.fn().mockResolvedValue("ok");
 		const onMutate = jest.fn();
 		const onSuccess = jest.fn();
@@ -57,7 +56,7 @@ describe("useMutation", () => {
 		});
 	});
 
-	it("mutate 옵션 콜백도 호출된다", async () => {
+	it("mutate 함수의 옵션 콜백들도 실행 시 올바르게 호출된다.", async () => {
 		const mutationFn = jest.fn().mockResolvedValue("ok");
 		const onMutate = jest.fn();
 		const onSuccess = jest.fn();
@@ -73,7 +72,7 @@ describe("useMutation", () => {
 		});
 	});
 
-	it("onError 콜백이 에러 발생 시 호출된다", async () => {
+	it("onError 콜백이 에러 발생 시 올바르게 호출된다.", async () => {
 		const error = new Error("fail");
 		const mutationFn = jest.fn().mockRejectedValue(error);
 		const onError = jest.fn();
