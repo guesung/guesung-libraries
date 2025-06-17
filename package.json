@@ -6,6 +6,7 @@
 		"format": "biome format --write",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
+		"ci-local": "pnpm run format && pnpm run build && pnpm run lint:fix && pnpm run type-check && pnpm run test",
 		"build:package": "lerna run build --scope=@guesung/*",
 		"build:example": "lerna run build --scope=@guesung/example-*",
 		"type-check": "lerna run type-check"
