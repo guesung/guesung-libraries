@@ -2,6 +2,7 @@
 	"name": "@guesung/example-javascript-movie-review",
 	"version": "2.0.0",
 	"description": "우아한테크코스 레벨1 영화 리뷰 미션 저장소",
+	"private": true,
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
