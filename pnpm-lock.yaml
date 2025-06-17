@@ -70,6 +70,9 @@ importers:
       '@fxts/core':
         specifier: ^1.6.0
         version: 1.12.0
+      '@guesung/component':
+        specifier: workspace:*
+        version: link:../../../packages/javascript/component
       dompurify:
         specifier: ^3.2.4
         version: 3.2.6

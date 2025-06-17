@@ -6,7 +6,7 @@ interface ToastProps {
 	type: TOAST_TYPE;
 }
 
-export const enum TOAST_TYPE {
+export enum TOAST_TYPE {
 	success = "success",
 	error = "error",
 }

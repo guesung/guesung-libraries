@@ -4,7 +4,8 @@ import { movieDetailResponseStore, moviesStore, serverStore } from "@/store";
 import { html } from "@/utils";
 import { forEach } from "@fxts/core";
 import { MOVIE_ITEM_PER_PAGE } from "@/constants";
-import Component from "./core/Component";
+import { Component } from "@guesung/component";
+
 import Movie from "./Movie";
 
 export default class Movies extends Component {
@@ -34,7 +35,10 @@ export default class Movies extends Component {
           <div>
             <h2>검색 결과를 찾지 못하였습니다.</h2>
             <p>단어의 철자가 정확한지 확인해 보세요.</p>
-            <p>검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.</p>
+            <p>
+              검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해
+              보세요.
+            </p>
             <p>두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요.</p>
           </div>
         </div>
@@ -43,7 +47,7 @@ export default class Movies extends Component {
 		return html`
       <ul class="thumbnail-list">
         <slot name="thumbnail-list"></slot>
-        ${movies.map((movie) => new Movie(movie))}
+        ${movies.map((movie) => new Movie(movie).template())}
       </ul>
     `;
 	}

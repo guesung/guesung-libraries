@@ -11,7 +11,7 @@ export default class ApiClient {
 		url: FetchURLParameterType,
 		options: RequestInit,
 	) {
-		return this.#request("GET", url, options) as TResponse;
+		return ApiClient.#request("GET", url, options) as TResponse;
 	}
 
 	static async #request(

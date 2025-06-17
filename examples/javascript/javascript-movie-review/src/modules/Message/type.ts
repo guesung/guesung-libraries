@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES, TOAST_MESSAGES } from "./constant";
+import type { ERROR_MESSAGES, TOAST_MESSAGES } from "./constant";
 
 export type MessageType<TMessageKey extends string | number> = Record<
 	TMessageKey,

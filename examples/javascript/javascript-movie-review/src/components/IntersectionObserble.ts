@@ -1,4 +1,4 @@
-import Component from "./core/Component";
+import { Component } from "@guesung/component";
 
 interface ObserableProps {
 	callback: IntersectionObserverCallback;

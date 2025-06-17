@@ -8,7 +8,8 @@ import {
 	searchStore,
 } from "@/store";
 import { html } from "@/utils";
-import Component from "./core/Component";
+import { Component } from "@guesung/component";
+
 import IntersectionObserble from "./IntersectionObserble";
 import MovieDetailModal from "./MovieDetailModal";
 import Movies from "./Movies";
@@ -16,7 +17,7 @@ import { forEach } from "@fxts/core";
 
 export default class MovieSection extends Component {
 	override setup() {
-		this.subsribe([moviesStore, errorStore, searchStore]);
+		this.subscribe([moviesStore, errorStore, searchStore]);
 
 		if (searchStore.getState())
 			getMovies({ page: pageStore.getState(), query: searchStore.getState() });
@@ -34,7 +35,9 @@ export default class MovieSection extends Component {
       <div class="container">
         <main>
           <section>
-            <h2 class="thumbnail-title">${search ? `"${search}" 검색 결과` : "지금 인기 있는 영화"}</h2>
+            <h2 class="thumbnail-title">
+              ${search ? `"${search}" 검색 결과` : "지금 인기 있는 영화"}
+            </h2>
             <slot name="movies"></slot>
             <slot name="obserable"></slot>
           </section>

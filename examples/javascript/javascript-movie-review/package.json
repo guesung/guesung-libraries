@@ -1,5 +1,5 @@
 {
-	"name": "javascript-movie-review",
+	"name": "@guesung/example-javascript-movie-review",
 	"version": "2.0.0",
 	"description": "우아한테크코스 레벨1 영화 리뷰 미션 저장소",
 	"type": "module",
@@ -22,7 +22,7 @@
 	"bugs": {
 		"url": "https://github.com/woowacourse-projects/javascript-movie-review/issues"
 	},
-	"homepage": "https://{username}.github.io/javascript-movie-review",
+	"homepage": "https://guesung.github.io/javascript-movie-review",
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
 		"@babel/preset-env": "^7.20.2",
@@ -60,6 +60,7 @@
 		"@fxts/core": "^1.6.0",
 		"dompurify": "^3.2.4",
 		"dotenv": "^16.4.7",
-		"jsdom": "^26.0.0"
+		"jsdom": "^26.0.0",
+		"@guesung/component": "workspace:*"
 	}
 }

@@ -1,5 +1,5 @@
 import { Footer, Header, MovieSection, Toast } from "./components";
-import { Component } from "./components/core";
+import { Component } from "@guesung/component";
 import { TOAST_TYPE } from "./components/Toast";
 import { eventHandlerInstance } from "./modules";
 import { toastMessage } from "./modules";

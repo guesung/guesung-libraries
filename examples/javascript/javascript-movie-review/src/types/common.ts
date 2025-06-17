@@ -1,4 +1,4 @@
 export interface StrictObject {
-	[key: string]: any;
+	[key: string]: unknown;
 	length?: never;
 }

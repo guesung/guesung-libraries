@@ -1,13 +1,13 @@
 import { join } from "@fxts/core";
 
 class Cache {
-	#cache = new Map<string, any>();
+	#cache = new Map<string, unknown>();
 
 	get(key: string) {
 		return this.#cache.get(key);
 	}
 
-	set(key: string, value: any) {
+	set(key: string, value: unknown) {
 		this.#cache.set(key, value);
 	}
 }

@@ -1,5 +1,5 @@
-import { LocalStorage, LocalStorageKeyType } from "@/modules";
-import { Store } from "@/store";
+import { LocalStorage, type LocalStorageKeyType } from "@/modules";
+import type { Store } from "@/store";
 
 export const persisted = <TState>(
 	key: LocalStorageKeyType,

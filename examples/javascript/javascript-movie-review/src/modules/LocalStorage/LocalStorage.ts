@@ -1,4 +1,4 @@
-import { LocalStorageKeyType } from "./type";
+import type { LocalStorageKeyType } from "./type";
 
 export default class LocalStorage {
 	static get<TLocalStorageValue>(key: LocalStorageKeyType) {
@@ -8,7 +8,7 @@ export default class LocalStorage {
 		return JSON.parse(value) as TLocalStorageValue;
 	}
 
-	static set(key: LocalStorageKeyType, value: any) {
+	static set(key: LocalStorageKeyType, value: unknown) {
 		localStorage.setItem(key, JSON.stringify(value));
 	}
 

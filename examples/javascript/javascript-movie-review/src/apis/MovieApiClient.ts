@@ -1,4 +1,4 @@
-import { MovieDetailResponse, MoviesResponse } from "@/types";
+import type { MovieDetailResponse, MoviesResponse } from "@/types";
 import ApiClient from "./ApiClient";
 import { TMDB_ORIGIN } from "@/constants";
 
@@ -25,7 +25,7 @@ export default class MovieApiClient {
 		url.searchParams.append("page", String(page));
 		url.searchParams.append("language", navigator.language);
 
-		return ApiClient.get<MoviesResponse>(url, this.#OPTIONS);
+		return ApiClient.get<MoviesResponse>(url, MovieApiClient.#OPTIONS);
 	}
 
 	static get({ page, query }: GetRequest) {
@@ -34,13 +34,13 @@ export default class MovieApiClient {
 		url.searchParams.append("language", navigator.language);
 		url.searchParams.append("query", query);
 
-		return ApiClient.get<MoviesResponse>(url, this.#OPTIONS);
+		return ApiClient.get<MoviesResponse>(url, MovieApiClient.#OPTIONS);
 	}
 
 	static getDetail({ id }: GetDetailRequest) {
 		const url = new URL(`/3/movie/${id}`, TMDB_ORIGIN);
 		url.searchParams.append("language", navigator.language);
 
-		return ApiClient.get<MovieDetailResponse>(url, this.#OPTIONS);
+		return ApiClient.get<MovieDetailResponse>(url, MovieApiClient.#OPTIONS);
 	}
 }

@@ -1,5 +1,9 @@
 import { ERROR_MESSAGES, TOAST_MESSAGES } from "./constant";
-import { ErrorMessageKeyType, MessageType, ToastMessageKeyType } from "./type";
+import type {
+	ErrorMessageKeyType,
+	MessageType,
+	ToastMessageKeyType,
+} from "./type";
 
 export default class Message<TMessageKey extends string | number> {
 	#MESSAGES: MessageType<TMessageKey>;

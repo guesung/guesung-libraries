@@ -1,5 +1,5 @@
+import { Component } from "@guesung/component";
 import { html } from "@/utils";
-import Component from "./core/Component";
 
 export default class Footer extends Component {
 	override template() {

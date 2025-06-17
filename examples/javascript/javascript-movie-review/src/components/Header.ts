@@ -1,4 +1,4 @@
-import { getAllMovies, getMovies, MovieApiClient } from "@/apis";
+import { MovieApiClient, getAllMovies, getMovies } from "@/apis";
 import { DEFAULT_BACK_DROP_URL } from "@/constants";
 import { eventHandlerInstance } from "@/modules";
 import {
@@ -8,15 +8,15 @@ import {
 	searchStore,
 	serverStore,
 } from "@/store";
-import { MovieType } from "@/types";
+import type { MovieType } from "@/types";
 import { html, isHTMLFormElement } from "@/utils";
-import Component from "./core/Component";
+import { Component } from "@guesung/component";
 
 export default class Header extends Component {
 	firstMovie: MovieType | undefined;
 
 	override setup() {
-		this.subsribe([moviesStore, searchStore]);
+		this.subscribe([moviesStore, searchStore]);
 	}
 
 	override template() {
@@ -154,9 +154,8 @@ export default class Header extends Component {
 
 		if (!this.firstMovie) return;
 
-		if (search) this.element!.style.backgroundImage = "";
+		if (search) this.element.style.backgroundImage = "";
 		else if (this.firstMovie.backdrop_path)
-			this.element!.style.backgroundImage =
-				`url(${DEFAULT_BACK_DROP_URL}/${this.firstMovie.backdrop_path})`;
+			this.element.style.backgroundImage = `url(${DEFAULT_BACK_DROP_URL}/${this.firstMovie.backdrop_path})`;
 	}
 }

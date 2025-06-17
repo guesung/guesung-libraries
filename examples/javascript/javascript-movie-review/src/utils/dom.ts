@@ -1,7 +1,7 @@
 import { concat, flat, map, pipe, reduce, zip } from "@fxts/core";
 import type { HTMLType } from "@/types";
 import { errorMessage } from "@/modules";
-import { Component } from "@/components/core";
+import { Component } from "@guesung/component";
 
 export const isElement = (target: EventTarget | null): target is Element =>
 	target instanceof Element;
@@ -28,10 +28,11 @@ export const $ = <
 	if (!target && !selector.endsWith("?"))
 		throw new Error(errorMessage.get("domNotFound", String(context), selector));
 
+	// biome-ignore lint/style/noNonNullAssertion: TODO
 	return target!;
 };
 
-export const escape = (value: unknown) => {
+export const escapeHTML = (value: unknown) => {
 	if (Array.isArray(value) && value.every((it) => it instanceof Component)) {
 		return value.map((it) => it.template()).join("");
 	}
@@ -49,7 +50,7 @@ export function html(
 				map(
 					(str) =>
 						Array.isArray(str) ? reduce((a, b) => `${a}${b}`, str) : str,
-					map(escape, values),
+					map(escapeHTML, values),
 				),
 				[""],
 			),

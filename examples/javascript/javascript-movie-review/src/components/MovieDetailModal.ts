@@ -17,7 +17,7 @@ export default class MovieDetailModal extends Modal {
 	override id = "movie-detail-modal";
 
 	override setup() {
-		this.subsribe([movieDetailResponseStore, movieRateStore]);
+		this.subscribe([movieDetailResponseStore, movieRateStore]);
 	}
 
 	override template() {
@@ -42,9 +42,17 @@ export default class MovieDetailModal extends Modal {
 			: "./images/default_thumbnail.jpeg";
 		return html`
       <div>
-        <div class="modal-background active" id="modalBackground" data-action="close-movie-detail-modal-outside">
+        <div
+          class="modal-background active"
+          id="modalBackground"
+          data-action="close-movie-detail-modal-outside"
+        >
           <div class="modal fade" data-action="not-close-movie-detail-modal">
-            <button class="close-modal" id="closeModal" data-action="close-movie-detail-modal-button">
+            <button
+              class="close-modal"
+              id="closeModal"
+              data-action="close-movie-detail-modal-button"
+            >
               <img src="./images/modal_button_close.png" />
             </button>
             <div class="modal-container">
@@ -63,7 +71,8 @@ export default class MovieDetailModal extends Modal {
                   </p>
                   <p class="rate">
                     <span>평균</span>
-                    <img src="./images/star_filled.png" class="star" /><span class="yellow"
+                    <img src="./images/star_filled.png" class="star" /><span
+                      class="yellow"
                       >${vote_average.toFixed(1)}</span
                     >
                   </p>

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import * as S from "./Toast.styles";
-import { type ToastVariant, useToast } from "./ToastProvider";
 import { CheckIcon } from "@/components";
+import * as S from "./Toast.styles";
 
+import { type ToastVariant, useToast } from "./ToastProvider";
 interface ToastProps {
 	id: number;
 	variant: ToastVariant;

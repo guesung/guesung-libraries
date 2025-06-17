@@ -1,10 +1,9 @@
 import { $ } from "@/utils";
-import { Component } from "../core";
-import { Props, State } from "../core/Component";
+import { Component, type Props, type State } from "@guesung/component";
 
 export default abstract class Modal<
-	TProps extends Props = {},
-	TState extends State = {},
+	TProps extends Props = Props,
+	TState extends State = State,
 > extends Component<TProps, TState> {
 	abstract id: string;
 
