@@ -23,7 +23,7 @@ class ServerStore {
 	async query<TResponse>({ queryKey, queryFn }: Query<TResponse>) {
 		const queryKeyString = join("-", queryKey);
 		const cachedValue = this.#cache.get(queryKeyString);
-		if (cachedValue) return cachedValue;
+		if (cachedValue) return cachedValue as TResponse;
 
 		const response = await queryFn();
 		this.#cache.set(queryKeyString, response);

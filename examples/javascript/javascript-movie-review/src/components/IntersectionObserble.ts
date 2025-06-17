@@ -1,9 +1,9 @@
 import { Component } from "@guesung/component";
 
-interface ObserableProps {
+type ObserableProps = {
 	callback: IntersectionObserverCallback;
 	id: string;
-}
+};
 
 export default class IntersectionObserble extends Component<ObserableProps> {
 	override onRender() {

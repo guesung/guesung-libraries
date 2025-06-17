@@ -1,10 +1,10 @@
 import { html, variant } from "@/utils";
 import { Modal } from "./common";
 
-interface ToastProps {
+type ToastProps = {
 	message: string;
 	type: TOAST_TYPE;
-}
+};
 
 export enum TOAST_TYPE {
 	success = "success",
