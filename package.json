@@ -3,6 +3,7 @@
 		"dev": "lerna run dev",
 		"build": "lerna run build",
 		"test": "lerna run test",
+		"test:coverage": "lerna run test:coverage",
 		"type-check": "lerna run type-check",
 		"build:package": "lerna run build --scope=@guesung/*",
 		"build:example": "lerna run build --scope=@guesung/example-*",

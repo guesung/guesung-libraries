@@ -1,5 +1,5 @@
-const { config } = require("@guesung/jest-config");
+const { defaultSettings } = require("@guesung/jest-config");
 
 module.exports = {
-	...config(),
+	...defaultSettings,
 };

@@ -11,13 +11,23 @@ const defaultSettings = {
 	setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };
 
-function settings(extraSettings) {
-	const settings = {
-		...defaultSettings,
-		...extraSettings,
-	};
+const coverageSettings = {
+	collectCoverage: true,
+	coverageDirectory: "coverage",
+	coverageReporters: ["text", "lcov"],
+	collectCoverageFrom: ["src/**/*.{js,ts,tsx}", "!src/**/*.d.ts", "!index.ts"],
+	coveragePathIgnorePatterns: ["index.ts"],
+	coverageThreshold: {
+		global: {
+			branches: 80,
+			functions: 90,
+			lines: 90,
+			statements: 90,
+		},
+	},
+};
 
-	return settings;
-}
-
-module.exports = settings;
+module.exports = {
+	defaultSettings,
+	coverageSettings,
+};
