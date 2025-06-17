@@ -19,9 +19,13 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"complexity": {
+				"noStaticOnlyClass": "off",
+				"noForEach": "off"
+			}
 		},
-		"ignore": ["dist"]
+		"ignore": ["dist", "coverage", "node_modules"]
 	},
 	"javascript": {
 		"formatter": {
