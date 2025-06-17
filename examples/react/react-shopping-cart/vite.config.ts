@@ -14,5 +14,8 @@ export default defineConfig({
 			"@": "/src",
 		},
 	},
-	base: process.env.NODE_ENV === "production" ? "/react-shopping-cart/" : "/",
+	base:
+		process.env.NODE_ENV === "production"
+			? "/guesung-libraries/react-shopping-cart/"
+			: "/",
 });
