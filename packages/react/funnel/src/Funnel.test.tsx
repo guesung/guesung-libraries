@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Funnel, { useFunnelContext } from "./Funnel";
 
 describe("Funnel", () => {
@@ -13,7 +13,64 @@ describe("Funnel", () => {
 		expect(screen.getByText("Step2")).toBeInTheDocument();
 	});
 
-	test("goNextStep 함수를 호출하면 다음 step으로 이동한다", () => {
+	describe("resetStep 함수", () => {
+		function ResetButton() {
+			const { resetStep } = useFunnelContext();
+			return (
+				<button type="button" onClick={resetStep}>
+					Reset
+				</button>
+			);
+		}
+
+		test("resetStep 함수는 step을 초기값으로 되돌린다", async () => {
+			history.pushState(null, "", "?step=2"); // Step2가 보이도록 쿼리스트링 세팅
+			render(
+				<Funnel initialStep={2}>
+					<Funnel.Step index={2}>
+						<ResetButton />
+					</Funnel.Step>
+					<Funnel.Step index={3}>Step3</Funnel.Step>
+				</Funnel>,
+			);
+			await waitFor(() => {
+				expect(screen.getByText("Reset")).toBeInTheDocument();
+			});
+			fireEvent.click(screen.getByText("Reset"));
+			await waitFor(() => {
+				expect(screen.getByText("Reset")).toBeInTheDocument();
+			});
+		});
+
+		test("popstate 이벤트 발생 시 step이 쿼리스트링에 맞게 변경된다", () => {
+			history.pushState(null, "", "?step=1");
+			render(
+				<Funnel initialStep={1}>
+					<Funnel.Step index={1}>Step1</Funnel.Step>
+					<Funnel.Step index={2}>Step2</Funnel.Step>
+				</Funnel>,
+			);
+			history.pushState(null, "", "?step=2");
+			fireEvent.popState(window);
+			expect(screen.getByText("Step2")).toBeInTheDocument();
+		});
+
+		test("FunnelContext를 Provider 없이 사용하면 에러를 던진다", () => {
+			function BadComponent() {
+				useFunnelContext();
+				return null;
+			}
+			expect(() => render(<BadComponent />)).toThrow();
+		});
+
+		test("Funnel의 children이 Step이 아니어도 렌더링된다", () => {
+			render(<Funnel>hello</Funnel>);
+			expect(screen.getByText("hello")).toBeInTheDocument();
+		});
+	});
+
+	test("goNextStep 함수를 호출하면 다음 step으로 이동한다", async () => {
+		history.pushState(null, "", "?step=1"); // Step1이 보이도록 쿼리스트링 세팅
 		const { getByRole } = render(
 			<Funnel initialStep={1}>
 				<Funnel.Step index={1}>
@@ -22,9 +79,13 @@ describe("Funnel", () => {
 				<Funnel.Step index={2}>Step2</Funnel.Step>
 			</Funnel>,
 		);
-
+		await waitFor(() => {
+			expect(getByRole("button", { name: "Go Next Step" })).toBeInTheDocument();
+		});
 		fireEvent.click(getByRole("button", { name: "Go Next Step" }));
-		expect(screen.getByText("Step2")).toBeInTheDocument();
+		await waitFor(() => {
+			expect(screen.getByText("Step2")).toBeInTheDocument();
+		});
 	});
 
 	test("goPrevStep 함수를 호출하면 이전 step으로 이동한다", () => {
