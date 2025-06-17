@@ -1,0 +1,66 @@
+name: Deploy
+
+on: push
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable corepack & install dependencies
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: setting environment variables 
+        run: |
+          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env
+          echo "VITE_TMDB_TOKEN=${{ secrets.VITE_TMDB_TOKEN }}" >> .env
+        working-directory: examples/javascript/javascript-movie-review
+
+      - name: setting environment variables
+        run: |
+          echo "VITE_TOKEN=${{ secrets.VITE_TOKEN }}" >> .env
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
+        working-directory: examples/react/react-shopping-cart
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Type Check
+        run: pnpm run type-check
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Test
+        run: pnpm run test
+
+
+      - name: Combine builds
+        run: |
+          mkdir -p dist
+          mkdir -p dist/javascript-movie-review
+          mkdir -p dist/react-shopping-cart
+          cp -r examples/javascript/javascript-movie-review/dist/* dist/javascript-movie-review
+          cp -r examples/react/react-shopping-cart/dist/* dist/react-shopping-cart
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

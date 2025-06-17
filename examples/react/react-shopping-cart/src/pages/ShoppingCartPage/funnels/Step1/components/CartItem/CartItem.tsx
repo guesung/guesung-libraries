@@ -77,7 +77,7 @@ export default memo(function CartItem({ id }: CartItemProps) {
 					<Card.Name>{name}</Card.Name>
 					<Card.Description>{price.toLocaleString()}원</Card.Description>
 					<PlusMinusButton
-						isLoading={cartItemsStatus === "loading"}
+						isLoading={cartItemsStatus === "pending"}
 						quantity={quantity}
 						onAddButtonClick={handleAddButtonClick}
 						onMinusButtonClick={handleMinusButtonClick}

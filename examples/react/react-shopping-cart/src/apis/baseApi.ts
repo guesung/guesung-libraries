@@ -1,5 +1,5 @@
 import { CONFIG } from "@/constants";
-import Api from "@/modules/Api/Api";
+import { Api } from "@guesung/api";
 
 export const baseApi = new Api(CONFIG.baseUrl, {
 	headers: {

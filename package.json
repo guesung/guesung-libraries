@@ -4,14 +4,13 @@
 		"build": "lerna run build",
 		"test": "lerna run test",
 		"test:coverage": "lerna run test:coverage",
+		"type-check": "lerna run type-check",
+		"build:package": "lerna run build --scope=@guesung/*",
+		"build:example": "lerna run build --scope=@guesung/example-*",
 		"format": "biome format --write",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
-		"check": "biome check",
-		"ci": "biome ci",
-		"build:package": "lerna run build --scope=@guesung/*",
-		"build:example": "lerna run build --scope=@guesung/example-*",
-		"type-check": "lerna run type-check"
+		"ci-local": "pnpm run format && pnpm run build && pnpm run lint:fix && pnpm run type-check && pnpm run test"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
