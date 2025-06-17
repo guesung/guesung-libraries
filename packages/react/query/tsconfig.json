@@ -8,5 +8,5 @@
 		"types": ["@testing-library/jest-dom"],
 		"declarationDir": "dist"
 	},
-	"include": ["src/**/*"]
+	"include": ["src"]
 }

@@ -25,7 +25,8 @@
 		"styled-components": "^6.1.11",
 		"vite-plugin-environment": "^1.1.3",
 		"@guesung/funnel": "workspace:*",
-		"@guesung/query": "workspace:*"
+		"@guesung/query": "workspace:*",
+		"@guesung/api": "workspace:*"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^6.4.5",
