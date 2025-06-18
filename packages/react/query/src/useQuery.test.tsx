@@ -1,7 +1,7 @@
+import { act, render, screen, waitFor } from "@testing-library/react";
 import type React from "react";
-import { Suspense, Component } from "react";
-import { render, screen, act, waitFor } from "@testing-library/react";
-import useQuery, { type UseQueryProps } from "./useQuery";
+import { Component, Suspense } from "react";
+import useQuery from "./useQuery";
 
 // 테스트용 컴포넌트
 function TestComponent({
@@ -34,8 +34,8 @@ function TestComponent({
 	);
 }
 
-import * as QueryStore from "./QueryStore";
 import * as QueryPromises from "./QueryPromises";
+import * as QueryStore from "./QueryStore";
 
 class ErrorBoundary extends Component<
 	{ children: React.ReactNode },
