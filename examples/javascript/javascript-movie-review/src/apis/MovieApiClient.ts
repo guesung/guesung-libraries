@@ -1,6 +1,6 @@
 import type { MovieDetailResponse, MoviesResponse } from "@/types";
 import ApiClient from "./ApiClient";
-import { TMDB_ORIGIN } from "@/constants";
+import { CONFIG, TMDB_ORIGIN } from "@/constants";
 
 interface GetAllRequest {
 	page: number;
@@ -17,7 +17,7 @@ interface GetDetailRequest {
 
 export default class MovieApiClient {
 	static #OPTIONS = {
-		headers: { Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}` },
+		headers: { Authorization: `Bearer ${CONFIG.tmdbToken}` },
 	};
 
 	static getAll({ page }: GetAllRequest) {
