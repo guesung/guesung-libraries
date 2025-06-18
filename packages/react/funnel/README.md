@@ -87,15 +87,14 @@ if (currentStep === 1) {
   - `index`: 단계 고유 이름(문자열)
   - `children`: 해당 단계에서 렌더링할 컴포넌트
 
-### useFunnel(steps: string[])
+### useFunnel(steps: number[])
 
 - **steps**: 단계 이름 배열(순서대로)
 - **return**
   - `currentStep`: 현재 단계 이름
   - `goNextStep()`: 다음 단계로 이동
   - `goPrevStep()`: 이전 단계로 이동
-  - `goTo(stepName: string)`: 특정 단계로 이동
-  - `resetStep`: 단계 초기화
+  - `resetStep()`: 단계 초기화
 
 ---
 
