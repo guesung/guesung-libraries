@@ -1,5 +1,6 @@
 {
 	"name": "@guesung/example-javascript-movie-review",
+	"private": true,
 	"version": "0.0.2",
 	"description": "우아한테크코스 레벨1 영화 리뷰 미션 저장소",
 	"type": "module",
@@ -50,9 +51,7 @@
 		}
 	},
 	"babel": {
-		"presets": [
-			"@babel/preset-env"
-		]
+		"presets": ["@babel/preset-env"]
 	},
 	"engines": {
 		"npm": ">=10.8.2",

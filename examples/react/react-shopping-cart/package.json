@@ -1,5 +1,6 @@
 {
 	"name": "@guesung/example-react-shopping-cart",
+	"private": true,
 	"version": "0.0.2",
 	"type": "module",
 	"scripts": {
@@ -42,9 +43,7 @@
 		"vite": "^5.2.0"
 	},
 	"msw": {
-		"workerDirectory": [
-			"public"
-		]
+		"workerDirectory": ["public"]
 	},
 	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
 }
