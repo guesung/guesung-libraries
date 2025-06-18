@@ -19,8 +19,8 @@
 		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@guesung/jest-config": "workspace:*",
-		"@guesung/rollup-config": "workspace:*",
+		"@guesung/jest-config": "0.0.2",
+		"@guesung/rollup-config": "0.0.3",
 		"@testing-library/jest-dom": "^6.4.5",
 		"@testing-library/react": "^16.3.0",
 		"@testing-library/react-hooks": "^8.0.1",
@@ -39,5 +39,6 @@
 	"peerDependencies": {
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0"
-	}
+	},
+	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
 }

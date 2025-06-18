@@ -8,7 +8,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@guesung/query": "workspace:*",
+		"@guesung/query": "0.0.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
 	},
@@ -18,5 +18,6 @@
 		"@vitejs/plugin-react": "^4.2.1",
 		"typescript": "^5.2.2",
 		"vite": "^5.0.8"
-	}
+	},
+	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
 }
