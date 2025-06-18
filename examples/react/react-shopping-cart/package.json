@@ -1,6 +1,7 @@
 {
 	"name": "@guesung/example-react-shopping-cart",
-	"version": "0.0.0",
+	"private": true,
+	"version": "0.0.2",
 	"type": "module",
 	"scripts": {
 		"dev": "vite --host",
@@ -15,14 +16,14 @@
 		"@emotion/css": "^11.13.5",
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.0",
+		"@guesung/api": "0.0.2",
+		"@guesung/funnel": "0.0.3",
+		"@guesung/query": "0.0.3",
 		"jest-fixed-jsdom": "^0.0.9",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"styled-components": "^6.1.11",
-		"vite-plugin-environment": "^1.1.3",
-		"@guesung/funnel": "workspace:*",
-		"@guesung/query": "workspace:*",
-		"@guesung/api": "workspace:*"
+		"vite-plugin-environment": "^1.1.3"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^6.4.5",
@@ -43,5 +44,6 @@
 	},
 	"msw": {
 		"workerDirectory": ["public"]
-	}
+	},
+	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
 }

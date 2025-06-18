@@ -1,5 +1,15 @@
 {
 	"$schema": "node_modules/lerna/schemas/lerna-schema.json",
-	"version": "0.0.0",
-	"npmClient": "pnpm"
+	"version": "independent",
+	"npmClient": "pnpm",
+	"command": {
+		"version": {
+			"message": "chore(release): Publish libraries [skip ci]",
+			"registry": "https://registry.npmjs.org/"
+		},
+		"publish": {
+			"graphType": "all",
+			"registry": "https://registry.npmjs.org/"
+		}
+	}
 }

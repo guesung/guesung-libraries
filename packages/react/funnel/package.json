@@ -1,7 +1,9 @@
 {
 	"name": "@guesung/funnel",
-	"version": "0.0.1",
-	"files": ["dist"],
+	"version": "0.0.4",
+	"files": [
+		"dist"
+	],
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
@@ -20,10 +22,9 @@
 		"test:coverage": "jest --coverage",
 		"type-check": "tsc --noEmit"
 	},
-	"dependencies": {},
 	"devDependencies": {
-		"@guesung/jest-config": "workspace:*",
-		"@guesung/rollup-config": "workspace:*",
+		"@guesung/jest-config": "0.0.2",
+		"@guesung/rollup-config": "0.0.3",
 		"@rollup/plugin-commonjs": "^26.0.1",
 		"@rollup/plugin-node-resolve": "^15.2.3",
 		"@rollup/plugin-terser": "^0.4.4",
@@ -46,5 +47,6 @@
 	"peerDependencies": {
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0"
-	}
+	},
+	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
 }

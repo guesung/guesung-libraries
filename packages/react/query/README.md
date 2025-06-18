@@ -1,4 +1,4 @@
-# Query
+# @guesung/query
 
 ## 개요
 
