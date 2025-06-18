@@ -1,6 +1,7 @@
 {
 	"name": "@guesung/jest-config",
 	"version": "0.0.2",
+	"private": true,
 	"main": "./src/index.js",
 	"keywords": [],
 	"author": "",
