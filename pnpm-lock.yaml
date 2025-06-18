@@ -56,8 +56,8 @@ importers:
   examples/javascript/component:
     devDependencies:
       '@guesung/component':
-        specifier: workspace:*
-        version: link:../../../packages/javascript/component
+        specifier: 0.0.2
+        version: 0.0.2
       typescript:
         specifier: ^5.2.2
         version: 5.8.3
@@ -71,8 +71,8 @@ importers:
         specifier: ^1.6.0
         version: 1.12.0
       '@guesung/component':
-        specifier: workspace:*
-        version: link:../../../packages/javascript/component
+        specifier: 0.0.2
+        version: 0.0.2
       dompurify:
         specifier: ^3.2.4
         version: 3.2.6
@@ -127,7 +127,7 @@ importers:
         version: 12.1.1(eslint@8.57.1)
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3))
+        version: 29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -141,8 +141,8 @@ importers:
   examples/react/funnel:
     dependencies:
       '@guesung/funnel':
-        specifier: workspace:*
-        version: link:../../../packages/react/funnel
+        specifier: 0.0.3
+        version: 0.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -169,8 +169,8 @@ importers:
   examples/react/query:
     dependencies:
       '@guesung/query':
-        specifier: workspace:*
-        version: link:../../../packages/react/query
+        specifier: 0.0.3
+        version: 0.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -206,14 +206,14 @@ importers:
         specifier: ^11.14.0
         version: 11.14.0(@emotion/react@11.14.0(@types/react@18.3.23)(react@19.1.0))(@types/react@18.3.23)(react@19.1.0)
       '@guesung/api':
-        specifier: workspace:*
-        version: link:../../../packages/javascript/api
+        specifier: 0.0.2
+        version: 0.0.2
       '@guesung/funnel':
-        specifier: workspace:*
-        version: link:../../../packages/react/funnel
+        specifier: 0.0.3
+        version: 0.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@guesung/query':
-        specifier: workspace:*
-        version: link:../../../packages/react/query
+        specifier: 0.0.3
+        version: 0.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       jest-fixed-jsdom:
         specifier: ^0.0.9
         version: 0.0.9(jest-environment-jsdom@29.7.0)
@@ -279,11 +279,11 @@ importers:
   packages/javascript/api:
     devDependencies:
       '@guesung/jest-config':
-        specifier: workspace:*
-        version: link:../../../configs/jest
+        specifier: 0.0.2
+        version: 0.0.2
       '@guesung/rollup-config':
-        specifier: workspace:*
-        version: link:../../../configs/rollup
+        specifier: 0.0.3
+        version: 0.0.3(@types/babel__core@7.20.5)(rollup@4.42.0)(tslib@2.8.1)(typescript@5.8.3)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -319,11 +319,11 @@ importers:
         version: 1.12.0
     devDependencies:
       '@guesung/jest-config':
-        specifier: workspace:*
-        version: link:../../../configs/jest
+        specifier: 0.0.2
+        version: 0.0.2
       '@guesung/rollup-config':
-        specifier: workspace:*
-        version: link:../../../configs/rollup
+        specifier: 0.0.3
+        version: 0.0.3(@types/babel__core@7.20.5)(rollup@4.42.0)(tslib@2.8.1)(typescript@5.8.3)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -362,11 +362,11 @@ importers:
         version: 19.1.0(react@19.1.0)
     devDependencies:
       '@guesung/jest-config':
-        specifier: workspace:*
-        version: link:../../../configs/jest
+        specifier: 0.0.2
+        version: 0.0.2
       '@guesung/rollup-config':
-        specifier: workspace:*
-        version: link:../../../configs/rollup
+        specifier: 0.0.3
+        version: 0.0.3(@types/babel__core@7.20.5)(rollup@4.42.0)(tslib@2.8.1)(typescript@5.8.3)
       '@rollup/plugin-commonjs':
         specifier: ^26.0.1
         version: 26.0.3(rollup@4.42.0)
@@ -432,11 +432,11 @@ importers:
         version: 19.1.0(react@19.1.0)
     devDependencies:
       '@guesung/jest-config':
-        specifier: workspace:*
-        version: link:../../../configs/jest
+        specifier: 0.0.2
+        version: 0.0.2
       '@guesung/rollup-config':
-        specifier: workspace:*
-        version: link:../../../configs/rollup
+        specifier: 0.0.3
+        version: 0.0.3(@types/babel__core@7.20.5)(rollup@4.42.0)(tslib@2.8.1)(typescript@5.8.3)
       '@testing-library/jest-dom':
         specifier: ^6.4.5
         version: 6.6.3
@@ -445,7 +445,7 @@ importers:
         version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.1.6(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@testing-library/react-hooks':
         specifier: ^8.0.1
-        version: 8.0.1(@types/react@19.1.6)
+        version: 8.0.1(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -1603,6 +1603,32 @@ packages:
 
   '@fxts/core@1.12.0':
     resolution: {integrity: sha512-y5+01XnpmRib5zyNPx/uYtDgV4oG1FEBZQ6RHLWZVa96HSJBZapsGhdV6Q5hnzo8DuZhpUJNmBlcQAHbxM5JKw==}
+
+  '@guesung/api@0.0.2':
+    resolution: {integrity: sha512-ZYUo/j8+KNi3pkciJTSiBIvFU3TA6tRvTXLym/VbC7bGcfzSJ/4XQ1/wpeEGAOQ1iqvH/pzD31jCrRFfBM40Cw==}
+
+  '@guesung/component@0.0.2':
+    resolution: {integrity: sha512-rs/hPOvqV+S1zO1NB2bROBwwAIjpk2OofO8FpeYs44nn1YZ3+Yz3NIkCoOXw6IwseJoeymZcImRRPz4OaF+c6Q==}
+
+  '@guesung/funnel@0.0.3':
+    resolution: {integrity: sha512-8fOVF/ig8dfNiN2C8nqoTAvQYUvw4pKKXDMQmKVIvvCTRwphFbb3/kcosKc6hDCGOdyxYo5o9L+XqGOtuoexaA==}
+    peerDependencies:
+      react: ^19.1.0
+      react-dom: ^19.1.0
+
+  '@guesung/jest-config@0.0.2':
+    resolution: {integrity: sha512-pBdfa83D/lUuE6cK+kmDLa6+qGoSt6Ar/Jdqfspa1r1bzSsSy+05uUfNLWlMuvOTDzJ/X1xI2t8N0QdHBpdt4A==}
+
+  '@guesung/query@0.0.3':
+    resolution: {integrity: sha512-asqcq9UMx5eJxt90Ol5R2BaY/10nnjYKhk1kFzglg0xtRI4w7Oh5y6G7oA8amASykh2TmoIauTwUoLPhV0k9og==}
+    peerDependencies:
+      react: ^19.1.0
+      react-dom: ^19.1.0
+
+  '@guesung/rollup-config@0.0.3':
+    resolution: {integrity: sha512-gCQrU8moI8TeYTqwvd4GL0iR4Jb0YfzOvqEmuyu7WPxB/Za8k8vF552CmhG/RLsbhqYsVwLOMKLAy3SXisA2MA==}
+    peerDependencies:
+      rollup: ^4.42.0
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -7514,6 +7540,52 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  '@guesung/api@0.0.2': {}
+
+  '@guesung/component@0.0.2':
+    dependencies:
+      '@fxts/core': 1.12.0
+
+  '@guesung/funnel@0.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@guesung/funnel@0.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@guesung/jest-config@0.0.2': {}
+
+  '@guesung/query@0.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@guesung/query@0.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@guesung/rollup-config@0.0.3(@types/babel__core@7.20.5)(rollup@4.42.0)(tslib@2.8.1)(typescript@5.8.3)':
+    dependencies:
+      '@babel/core': 7.27.4
+      '@babel/preset-env': 7.27.2(@babel/core@7.27.4)
+      '@babel/preset-react': 7.27.1(@babel/core@7.27.4)
+      '@rollup/plugin-babel': 6.0.4(@babel/core@7.27.4)(@types/babel__core@7.20.5)(rollup@4.42.0)
+      '@rollup/plugin-commonjs': 26.0.3(rollup@4.42.0)
+      '@rollup/plugin-node-resolve': 15.3.1(rollup@4.42.0)
+      '@rollup/plugin-terser': 0.4.4(rollup@4.42.0)
+      '@rollup/plugin-typescript': 11.1.6(rollup@4.42.0)(tslib@2.8.1)(typescript@5.8.3)
+      rollup: 4.42.0
+      rollup-plugin-peer-deps-external: 2.2.4(rollup@4.42.0)
+    transitivePeerDependencies:
+      - '@types/babel__core'
+      - supports-color
+      - tslib
+      - typescript
+
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -7583,6 +7655,41 @@ snapshots:
       jest-message-util: 29.7.0
       jest-util: 29.7.0
       slash: 3.0.0
+
+  '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))':
+    dependencies:
+      '@jest/console': 29.7.0
+      '@jest/reporters': 29.7.0
+      '@jest/test-result': 29.7.0
+      '@jest/transform': 29.7.0
+      '@jest/types': 29.6.3
+      '@types/node': 20.19.0
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      exit: 0.1.2
+      graceful-fs: 4.2.11
+      jest-changed-files: 29.7.0
+      jest-config: 29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
+      jest-haste-map: 29.7.0
+      jest-message-util: 29.7.0
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-resolve-dependencies: 29.7.0
+      jest-runner: 29.7.0
+      jest-runtime: 29.7.0
+      jest-snapshot: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      jest-watcher: 29.7.0
+      micromatch: 4.0.8
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-ansi: 6.0.1
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
 
   '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3))':
     dependencies:
@@ -8362,12 +8469,14 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
-  '@testing-library/react-hooks@8.0.1(@types/react@19.1.6)':
+  '@testing-library/react-hooks@8.0.1(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.27.6
-      react-error-boundary: 3.1.4
+      react: 19.1.0
+      react-error-boundary: 3.1.4(react@19.1.0)
     optionalDependencies:
       '@types/react': 19.1.6
+      react-dom: 19.1.0(react@19.1.0)
 
   '@testing-library/react@15.0.7(@types/react@18.3.23)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -9248,6 +9357,21 @@ snapshots:
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.8.3
+
+  create-jest@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3)):
+    dependencies:
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      exit: 0.1.2
+      graceful-fs: 4.2.11
+      jest-config: 29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
+      jest-util: 29.7.0
+      prompts: 2.4.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
 
   create-jest@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3)):
     dependencies:
@@ -10655,6 +10779,25 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
+  jest-cli@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3)):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
+      '@jest/test-result': 29.7.0
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      create-jest: 29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
+      exit: 0.1.2
+      import-local: 3.2.0
+      jest-config: 29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
   jest-cli@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3)):
     dependencies:
       '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3))
@@ -10673,6 +10816,37 @@ snapshots:
       - babel-plugin-macros
       - supports-color
       - ts-node
+
+  jest-config@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3)):
+    dependencies:
+      '@babel/core': 7.27.4
+      '@jest/test-sequencer': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.27.4)
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.7.0(babel-plugin-macros@3.1.0)
+      jest-environment-node: 29.7.0
+      jest-get-type: 29.6.3
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-runner: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      micromatch: 4.0.8
+      parse-json: 5.2.0
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 20.19.0
+      ts-node: 10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
 
   jest-config@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3)):
     dependencies:
@@ -10938,6 +11112,18 @@ snapshots:
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
+
+  jest@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3)):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
+      '@jest/types': 29.6.3
+      import-local: 3.2.0
+      jest-cli: 29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3))
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
 
   jest@29.7.0(@types/node@20.19.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3)):
     dependencies:
@@ -12002,9 +12188,10 @@ snapshots:
       react: 19.1.0
       scheduler: 0.26.0
 
-  react-error-boundary@3.1.4:
+  react-error-boundary@3.1.4(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.6
+      react: 19.1.0
 
   react-is@16.13.1: {}
 
@@ -12660,6 +12847,27 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.27.4)
+
+  ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.7.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 20.19.0
+      acorn: 8.14.1
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.7.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optionalDependencies:
+      '@swc/core': 1.12.1
+    optional: true
 
   ts-node@10.9.2(@swc/core@1.12.1)(@types/node@20.19.0)(typescript@5.8.3):
     dependencies:
