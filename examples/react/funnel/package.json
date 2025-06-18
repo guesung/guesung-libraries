@@ -1,6 +1,6 @@
 {
 	"name": "@guesung/example-react-funnel",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -9,9 +9,9 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@guesung/funnel": "workspace:*",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"@guesung/funnel": "workspace:*"
+		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.43",
