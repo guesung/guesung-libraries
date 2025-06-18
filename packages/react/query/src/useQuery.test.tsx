@@ -1,7 +1,7 @@
 import type React from "react";
 import { Suspense, Component } from "react";
 import { render, screen, act, waitFor } from "@testing-library/react";
-import useQuery from "./useQuery";
+import useQuery, { type UseQueryProps } from "./useQuery";
 
 // 테스트용 컴포넌트
 function TestComponent({
@@ -12,7 +12,7 @@ function TestComponent({
 	isErrorBoundary,
 	refetchOnWindowFocus,
 	refetchOnReconnect,
-	// biome-ignore lint/suspicious/noExplicitAny: TODO
+	// biome-ignore lint/suspicious/noExplicitAny: 테스트 컴포넌트
 }: any) {
 	const { data, status, refetch } = useQuery({
 		queryKey,
