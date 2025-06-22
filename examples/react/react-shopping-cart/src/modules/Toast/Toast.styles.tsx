@@ -14,7 +14,7 @@ export const ToastContainer = styled.div`
   z-index: 100;
 `;
 
-export const Toast = styled.div<{ variant: ToastVariant; isVisible: boolean }>`
+export const Toast = styled.div<{ variant: ToastVariant; duration: number }>`
   min-width: 300px;
   max-width: 350px;
   background: ${({ theme }) => theme.colors.white};
@@ -24,9 +24,30 @@ export const Toast = styled.div<{ variant: ToastVariant; isVisible: boolean }>`
   display: flex;
   align-items: center;
   padding: 16px 20px 12px 16px;
-  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   background-color: ${({ variant, theme }) => (variant === "success" ? theme.colors.success : theme.colors.error)};
-  transition: opacity 0.3s ease-in-out;
+  animation: active ${({ duration }) => duration}ms ease forwards;
+
+  @keyframes active {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    10% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+
+    90% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
 `;
 
 export const ToastIcon = styled.div`
