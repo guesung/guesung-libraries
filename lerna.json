@@ -4,7 +4,7 @@
 	"npmClient": "pnpm",
 	"command": {
 		"version": {
-			"message": "chore: release libraries [skip ci]",
+			"message": "chore: 라이브러리 배포",
 			"registry": "https://registry.npmjs.org/",
 			"conventionalCommits": true,
 			"changelogPreset": {
