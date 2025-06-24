@@ -1,0 +1,82 @@
+---
+description: 
+globs: *.test.*
+alwaysApply: false
+---
+
+# Cursor Rules: 테스트 코드 작성 가이드라인 (guesung-libraries)
+
+## 1. 테스트 파일 구조 및 위치
+
+- 각 기능/모듈 파일과 동일한 폴더에 `.test.ts` 또는 `.test.tsx` 파일로 작성한다.
+- 테스트 파일명은 반드시 테스트 대상 파일명과 일치시키고, 확장자만 `.test.ts(x)`로 한다.
+  - 예: `useQuery.ts` → `useQuery.test.tsx`
+
+## 2. 테스트 프레임워크 및 도구
+
+- **React/JS**: React Testing Library + Jest를 기본으로 사용한다.
+- **비동기/타이머**: `jest.useFakeTimers()`, `act`, `waitFor` 등 공식 API를 적극 활용한다.
+- **전역 상태/캐시**: 테스트 전후에 반드시 전역 상태(캐시 등)를 초기화한다.
+
+## 3. 테스트 코드 스타일
+
+- **테스트 설명**은 "무엇을 검증하는지" 한글로 명확하게 작성한다.
+- **테스트 케이스**는 한 기능/상태/옵션 단위로 분리하여 작성한다.
+- **테스트용 컴포넌트**를 만들어 실제 사용 환경과 유사하게 훅/함수를 감싼다.
+- **ErrorBoundary, Suspense** 등 React의 고급 기능도 실제 동작과 동일하게 테스트한다.
+- **mock 함수**는 각 테스트마다 명확히 선언하고, 기대값을 명확히 지정한다.
+- **전역 상태/캐시**는 beforeEach/afterEach에서 항상 초기화한다.
+- describe를 활용해서 각 테스트 케이스를 그루핑한다.
+
+## 4. 테스트 커버리지
+
+- **정상 동작**(성공 fetch, 초기 데이터, refetch 등)
+- **에러 처리**(에러 발생, ErrorBoundary, 에러 메시지 등)
+- **옵션별 분기**(isSuspense, refetchOnWindowFocus, refetchOnReconnect 등)
+- **이벤트/타이머**(focus, online, interval 등)
+- **클린업**(unmount 시 리스너/타이머 해제)
+- **캐싱/중복 호출 방지**(동일 쿼리 중복 호출 시 Promise 재사용 등)
+- **엣지 케이스**(빠른 연속 호출, 비동기 race, 초기화 등)
+
+## 5. 테스트 유지보수
+
+- 테스트가 깨질 경우, 실제 코드/기능의 변경 의도를 먼저 확인한다.
+- 테스트 코드도 리팩터링/리네이밍/기능 추가 시 항상 함께 수정한다.
+- 테스트 실패 시, 원인(상태 초기화, mock 값, 비동기 처리 등)을 꼼꼼히 점검한다.
+
+## 6. 예시 코드 패턴
+
+```tsx
+// 예시: useQuery.test.tsx
+import React, { Suspense, Component } from "react";
+import { render, screen, act, waitFor } from "@testing-library/react";
+import useQuery from "./useQuery";
+import * as QueryStore from "./QueryStore";
+import * as QueryPromises from "./QueryPromises";
+
+// ...테스트용 컴포넌트, ErrorBoundary 정의...
+
+describe("useQuery", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+    // ...spyOn, 전역 캐시 초기화...
+  });
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.restoreAllMocks();
+  });
+
+  it("기본 데이터 fetch 동작", async () => {
+    // ...
+  });
+
+  // ...각종 케이스별 테스트...
+});
+```
+
+## 7. 추가 원칙
+
+- 테스트 코드도 **가독성, 일관성, 유지보수성**을 최우선으로 한다.
+- 테스트 커버리지는 실제 코드와 동일한 수준으로 중요하게 다룬다.
+- 테스트 코드 내 magic number, 복잡한 조건 등은 반드시 상수화/명명한다.
+- 테스트 실패 시, 원인 분석과 재현 가능한 최소 예시를 남긴다.
