@@ -1,4 +1,12 @@
 {
+	"name": "guesung-libraries",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/guesung/guesung-libraries.git"
+	},
+	"author": "guesung <guesung@naver.com>",
+	"license": "MIT",
+	"private": true,
 	"scripts": {
 		"dev": "lerna run dev",
 		"build": "lerna run build",

@@ -3,10 +3,6 @@
 	"version": "0.0.3",
 	"private": true,
 	"main": "./src/index.js",
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"description": "",
 	"dependencies": {
 		"@babel/core": "^7.27.4",
 		"@babel/preset-env": "^7.27.2",
@@ -20,6 +16,14 @@
 	},
 	"peerDependencies": {
 		"rollup": "^4.42.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/guesung/guesung-libraries.git",
+		"directory": "configs/rollup"
 	},
 	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
 }
