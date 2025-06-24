@@ -3,9 +3,16 @@
 	"version": "0.0.2",
 	"private": true,
 	"main": "./src/index.js",
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"description": "",
-	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
+	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7",
+	"peerDependencies": {
+		"jest": "^29.7.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/guesung/guesung-libraries.git",
+		"directory": "configs/jest"
+	}
 }

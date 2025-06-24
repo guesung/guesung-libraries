@@ -1,9 +1,7 @@
 {
 	"name": "@guesung/component",
 	"version": "0.0.3",
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
@@ -35,6 +33,14 @@
 		"ts-jest": "^29.3.4",
 		"ts-node": "^10.9.2",
 		"tslib": "^2.8.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/guesung/guesung-libraries.git",
+		"directory": "packages/javascript/component"
 	},
 	"gitHead": "94a1c43e00ba5fc76a936da77d739c353ec84ca7"
 }
