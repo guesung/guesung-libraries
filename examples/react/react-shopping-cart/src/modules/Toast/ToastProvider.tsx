@@ -3,6 +3,7 @@ import {
 	createContext,
 	useCallback,
 	useContext,
+	useRef,
 	useState,
 } from "react";
 import Toast from "./Toast";
@@ -26,9 +27,10 @@ export const ToastContext = createContext<ToastContextType | null>(null);
 
 export default function ToastProvider({ children }: PropsWithChildren) {
 	const [toasts, setToasts] = useState<ToastType[]>([]);
+	const idRef = useRef(0);
 
 	const showToast = useCallback((toast: Omit<ToastType, "id">) => {
-		setToasts((prev) => [...prev, { ...toast, id: Date.now() }]);
+		setToasts((prev) => [...prev, { ...toast, id: idRef.current++ }]);
 	}, []);
 
 	const hideToast = useCallback((id: number) => {
