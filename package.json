@@ -15,13 +15,19 @@
 		"type-check": "lerna run type-check",
 		"build:package": "lerna run build --scope=@guesung/*",
 		"build:example": "lerna run build --scope=@guesung/example-*",
+		"version:patch": "lerna version --no-private --no-push patch",
+		"publish:patch": "lerna publish --no-private --no-push from-package",
 		"format": "biome format --write",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
-		"ci-local": "pnpm run format && pnpm run build && pnpm run lint:fix && pnpm run type-check && pnpm run test"
+		"ci-local": "pnpm run format && pnpm run build && pnpm run lint:fix && pnpm run type-check && pnpm run test",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
+		"@commitlint/cli": "^19.8.1",
+		"@commitlint/config-conventional": "^19.8.1",
+		"husky": "^9.1.7",
 		"lerna": "^8.2.2",
 		"typescript": "^5.8.3"
 	},
