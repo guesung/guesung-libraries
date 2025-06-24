@@ -1,7 +1,7 @@
 ## 라이브러리 목록
 
-- [@guesung/api](./packages/javascript/api/README.md)
-- [@guesung/component](./packages/javascript/component/README.md)
+- @guesung/api
+- @guesung/component
 
-- [@guesung/funnel](./packages/react/funnel/README.md)
-- [@guesung/query](./packages/react/query/README.md)
+- @guesung/funnel
+- @guesung/query
