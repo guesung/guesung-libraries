@@ -39,10 +39,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist
+
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
