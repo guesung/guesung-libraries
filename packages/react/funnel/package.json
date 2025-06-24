@@ -1,7 +1,9 @@
 {
 	"name": "@guesung/funnel",
-	"version": "0.0.4",
-	"files": ["dist"],
+	"version": "0.0.5",
+	"files": [
+		"dist"
+	],
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
