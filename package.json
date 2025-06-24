@@ -15,6 +15,8 @@
 		"type-check": "lerna run type-check",
 		"build:package": "lerna run build --scope=@guesung/*",
 		"build:example": "lerna run build --scope=@guesung/example-*",
+		"version:patch": "lerna version --no-private --no-push patch",
+		"publish:patch": "lerna publish --no-private --no-push from-package",
 		"format": "biome format --write",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
