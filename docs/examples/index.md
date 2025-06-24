@@ -1,13 +1,3 @@
-# guesung-libraries
-
-## 라이브러리 목록
-
-- @guesung/api]
-- @guesung/component
-
-- @guesung/funnel
-- @guesung/query
-
 ## 예시 프로젝트
 
 ### [피터네 장바구니](https://guesung.github.io/guesung-libraries/react-shopping-cart)
