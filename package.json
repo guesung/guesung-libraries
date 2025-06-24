@@ -21,7 +21,8 @@
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
 		"ci-local": "pnpm run format && pnpm run build && pnpm run lint:fix && pnpm run type-check && pnpm run test",
-		"prepare": "husky"
+		"prepare": "husky",
+		"build:docs": "lerna run build --scope=docs"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
