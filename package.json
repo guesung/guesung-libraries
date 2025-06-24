@@ -22,9 +22,7 @@
 		"lint:fix": "biome lint --write",
 		"ci-local": "pnpm run format && pnpm run build && pnpm run lint:fix && pnpm run type-check && pnpm run test",
 		"prepare": "husky",
-		"docs:dev": "vitepress dev docs",
-		"docs:build": "vitepress build docs",
-		"docs:preview": "vitepress preview docs"
+		"build:docs": "lerna run build --scope=docs"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
@@ -32,8 +30,7 @@
 		"@commitlint/config-conventional": "^19.8.1",
 		"husky": "^9.1.7",
 		"lerna": "^8.2.2",
-		"typescript": "^5.8.3",
-		"vitepress": "^1.6.3"
+		"typescript": "^5.8.3"
 	},
 	"packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
 }

@@ -4,8 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	title: "Guesung Libraries",
 	description: "All about guesung libraries",
-	base:
-		process.env.NODE_ENV === "production" ? "/guesung-libraries/docs/" : "/",
+	base: "/",
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
