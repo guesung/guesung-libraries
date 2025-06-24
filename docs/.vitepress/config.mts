@@ -53,7 +53,7 @@ export default defineConfig({
 					items: [
 						{
 							text: "react-shopping-cart",
-							link: "/examples/react/react-shopping-cart",
+							link: "https://guesung.github.io/guesung-libraries/react-shopping-cart",
 						},
 					],
 				},
@@ -62,7 +62,7 @@ export default defineConfig({
 					items: [
 						{
 							text: "javascript-movie-review",
-							link: "/examples/javascript/javascript-movie-review",
+							link: "https://guesung.github.io/guesung-libraries/javascript-movie-review",
 						},
 					],
 				},
